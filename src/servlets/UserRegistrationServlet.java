@@ -7,8 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.JSONObject;
+import com.google.gson.Gson;
+
 import MySQL.ControllerMySQL;
+import models.APIResponse;
 import models.User;
 
 @WebServlet("/userRegistration")
@@ -24,10 +26,13 @@ public class UserRegistrationServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		JSONObject json =  new JSONObject();
+		APIResponse responseModel = new APIResponse();
+		Gson gsonConverter = new Gson();
 		ControllerMySQL controllerMySQL = new ControllerMySQL(); 
+		response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
 		
-		if(request.getParameter("userName") != null || request.getParameter("userEmail") != null  || request.getParameter("userPassword") != null || request.getParameter("userRepeatPassword") != null ) {
+		if(request.getParameter("userName") != "" && request.getParameter("userEmail") != "" && request.getParameter("userPassword") != "" && request.getParameter("userRepeatPassword") != "") {
 			
 			String password = request.getParameter("userPassword");
 			String passwordRepeat = request.getParameter("userRepeatPassword");
@@ -36,39 +41,67 @@ public class UserRegistrationServlet extends HttpServlet {
 						
 				String userName = request.getParameter("userName");
 				String userEmail = request.getParameter("userEmail");
+				String userType = request.getParameter("userType");
 				
-				Boolean userExists = controllerMySQL.userExists(userEmail);
+				User userExists = controllerMySQL.searchUserByEmail(userEmail);
 				
-				if(userExists == false) {
+				if(userExists == null) {
 					
 					User user = controllerMySQL.registerUser(userName, userEmail, password);
-					if(user != null) {
-						
-						json.put("error", "false");
-						response.getOutputStream().print(json.toString());
-						
-					} else {
-						json.put("error", "true");
-						json.put("errorMsg", "Error creating the new user");
-						response.getOutputStream().print(json.toString());
-					}
 					
+					if(user != null) {
+						if(userType.equals("Patient")) {
+							
+							Boolean patientCreated = controllerMySQL.registerPatient(user.getUserId());
+							
+							if(patientCreated == true) {
+								responseModel.setError(false);
+								response.getWriter().print(gsonConverter.toJson(responseModel));
+								response.getWriter().flush();
+							} else {
+								responseModel.setError(true);
+								responseModel.setErrorMsg("Error inserting new patient");
+								response.getWriter().print(gsonConverter.toJson(responseModel));
+								response.getWriter().flush();
+							}
+						} else {
+							
+							Boolean doctorCreated = controllerMySQL.registerDoctor(user.getUserId());
+							
+							if(doctorCreated == true) {
+								responseModel.setError(false);
+								response.getWriter().print(gsonConverter.toJson(responseModel));
+								response.getWriter().flush();
+							} else {
+								responseModel.setError(true);
+								responseModel.setErrorMsg("Error inserting new doctor");
+								response.getWriter().print(gsonConverter.toJson(responseModel));
+								response.getWriter().flush();
+							}
+						}
+					} else {
+						responseModel.setError(true);
+						responseModel.setErrorMsg("Error inserting new user");
+						response.getWriter().print(gsonConverter.toJson(responseModel));
+						response.getWriter().flush();
+					}
 				} else {
-					json.put("error", "true");
-					json.put("errorMsg", "User already exists");
-					response.getOutputStream().print(json.toString());
+					responseModel.setError(true);
+					responseModel.setErrorMsg("User already exists");
+					response.getWriter().print(gsonConverter.toJson(responseModel));
+					response.getWriter().flush();
 				}
-				
 			} else {
-				json.put("error", "true");
-				json.put("errorMsg", "Password is not the same");
-				response.getOutputStream().print(json.toString());
+				responseModel.setError(true);
+				responseModel.setErrorMsg("Password is not the same");
+				response.getWriter().print(gsonConverter.toJson(responseModel));
+				response.getWriter().flush();
 			}
-			
 		} else {
-			json.put("error", "true");
-			json.put("errorMsg", "Parameters missing");
-			response.getOutputStream().print(json.toString());
+			responseModel.setError(true);
+			responseModel.setErrorMsg("Parameters missing");
+			response.getWriter().print(gsonConverter.toJson(responseModel));
+			response.getWriter().flush();
 		}
 	}
 }

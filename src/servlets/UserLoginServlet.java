@@ -7,32 +7,72 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class UserLoginServlet
- */
-@WebServlet("/UserLoginServlet")
+import com.google.gson.Gson;
+
+import MySQL.ControllerMySQL;
+import models.APIResponse;
+import models.Doctor;
+import models.Patient;
+import models.User;
+
+@WebServlet("/userLogin")
 public class UserLoginServlet extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public UserLoginServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
+    public UserLoginServlet() {super();}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		
+		APIResponse responseModel = new APIResponse();
+		Gson gsonConverter = new Gson();
+		ControllerMySQL controllerMySQL = new ControllerMySQL(); 
+		response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        
+        if(request.getParameter("userEmail") != "" && request.getParameter("userPassword") != "") {
+        	
+        	String userEmail = request.getParameter("userEmail");
+        	String userPassword = request.getParameter("userPassword");
+        	
+        	User user = controllerMySQL.searchUserByEmail(userEmail);
+        	
+        	if(user != null) {
+        		
+        		if(user.getPassword().equals(userPassword)) {
+        			
+        			Patient patient = controllerMySQL.searchPatientByUserId(user);
+        			Doctor doctor = controllerMySQL.searchDoctorByUserId(user);
+        			
+        			if(patient != null && doctor == null) {
+        				responseModel.setError(false);
+            			responseModel.setPatient(patient);
+            			response.getWriter().print(gsonConverter.toJson(responseModel));
+            			response.getWriter().flush();
+        			} else {
+        				responseModel.setError(false);
+            			responseModel.setDoctor(doctor);
+            			response.getWriter().print(gsonConverter.toJson(responseModel));
+            			response.getWriter().flush();
+        			}
+        			
+        		} else {
+        			responseModel.setError(true);
+        			responseModel.setErrorMsg("Incorrect password");
+        			response.getWriter().print(gsonConverter.toJson(responseModel));
+        			response.getWriter().flush();
+        		}
+        	} else {
+        		responseModel.setError(true);
+    			responseModel.setErrorMsg("No user found with that email");
+    			response.getWriter().print(gsonConverter.toJson(responseModel));
+    			response.getWriter().flush();
+        	}
+        } else {
+        	responseModel.setError(true);
+			responseModel.setErrorMsg("Parameters missing");
+			response.getWriter().print(gsonConverter.toJson(responseModel));
+			response.getWriter().flush();
+        }
 	}
-
 }
