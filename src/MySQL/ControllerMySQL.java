@@ -5,6 +5,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
+import java.util.List;
+
 import common.CommonParams;
 import models.Doctor;
 import models.Patient;
@@ -151,6 +154,111 @@ public class ControllerMySQL {
 			return null;
 		}
 	}
+	
+	public User searchUserById(int userId) {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			
+			Connection connection = DriverManager.getConnection(CommonParams.BASE_DB_URL, CommonParams.DB_HOST, CommonParams.DB_PASSWORD);
+			PreparedStatement statement = connection.prepareStatement(CommonParams.SEARCH_USER_BY_USERID);
+			
+			statement.setInt(1, userId);
+			ResultSet resultSet = statement.executeQuery();
+			
+			if(resultSet.next()) {
+				User user = new User(resultSet.getInt("userId"), resultSet.getString("userName"), resultSet.getString("userEmail")
+						, resultSet.getString("userEncryptedPassword"), resultSet.getString("userSalt"));
+				connection.close();
+				return user;
+			} else {
+				connection.close();
+				return null;
+			}
+			
+		} catch (Exception error) {
+			error.printStackTrace();
+			return null;
+		}
+	}
+	
+	public List<Patient> listAllPatientsWithOutDoctor() {
+		
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			
+			Connection connection = DriverManager.getConnection(CommonParams.BASE_DB_URL, CommonParams.DB_HOST, CommonParams.DB_PASSWORD);
+			PreparedStatement statement = connection.prepareStatement(CommonParams.LIST_ALL_PATIENTS);
+			
+			ResultSet resultSet = statement.executeQuery();
+			
+			List<Patient> patientsList = new LinkedList<Patient>();
+			while(resultSet.next()) {
+				User user = searchUserById(resultSet.getInt("userId"));
+				Patient patient = new Patient(resultSet.getInt("patientId"), resultSet.getString("patientIdNumber"), user);
+				patientsList.add(patient);
+			}
+			
+			connection.close();
+			return patientsList;
+			
+		} catch(SQLException | ClassNotFoundException error) {
+			error.printStackTrace();
+			return null;
+		}
+	}
+	
+	public List<Patient> listAllDoctorPatients(int doctorId) {
+		
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			
+			Connection connection = DriverManager.getConnection(CommonParams.BASE_DB_URL, CommonParams.DB_HOST, CommonParams.DB_PASSWORD);
+			PreparedStatement statement = connection.prepareStatement(CommonParams.LIST_ALL_DOCTOR_PATIENTS);
+			
+			statement.setInt(1, doctorId);
+			ResultSet resultSet = statement.executeQuery();
+			
+			List<Patient> patientsList = new LinkedList<Patient>();
+			while(resultSet.next()) {
+				User user = searchUserById(resultSet.getInt("userId"));
+				Patient patient = new Patient(resultSet.getInt("patientId"), resultSet.getString("patientIdNumber"), user);
+				patientsList.add(patient);
+			}
+			
+			connection.close();
+			return patientsList;
+			
+		} catch(SQLException | ClassNotFoundException error) {
+			error.printStackTrace();
+			return null;
+		}
+	}
+	
+	public boolean addPatientToDoctor(int doctorId, int patientId) {
+		
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			
+			Connection connection = DriverManager.getConnection(CommonParams.BASE_DB_URL, CommonParams.DB_HOST, CommonParams.DB_PASSWORD);
+			PreparedStatement statement = connection.prepareStatement(CommonParams.UPDATE_PATIENT_DOCTOR);
+			
+			statement.setInt(1, doctorId);
+			statement.setInt(1, patientId);
+			int result = statement.executeUpdate();
+			
+			if(result != 0) {
+				connection.close();
+				return true;
+			} else {
+				connection.close();
+				return false;
+			}
+		}  catch(SQLException | ClassNotFoundException error) {
+			error.printStackTrace();
+			return false;
+		}
+	}
+	
 }
 
 

@@ -17,7 +17,16 @@ public @interface CommonParams {
 	
 	// Search data from the data base
 	public final String SEARCH_USER_BY_EMAIL = "SELECT * FROM Users WHERE userEmail = ?;";
+	public final String SEARCH_USER_BY_USERID = "SELECT * FROM Users WHERE userId = ?;";
 	public final String SEARCH_PATIENT_BY_USERID = "SELECT * FROM Patients WHERE userId = ?;";
 	public final String SEARCH_DOCTOR_BY_USERID = "SELECT * FROM Doctors WHERE userId = ?;";
+	
+	// List all form the database
+	public final String LIST_ALL_PATIENTS = "SELECT * FROM Patients WHERE doctorId = NULL;";
+	public final String LIST_ALL_DOCTOR_PATIENTS = "SELECT * FROM Patients WHERE doctorId = ?;";
+	
+	// Update data base 
+	public final String UPDATE_PATIENT_DOCTOR = "UPDATE Patients SET doctorId = ? WHERE patientId = ?;";
+	
 
 }
