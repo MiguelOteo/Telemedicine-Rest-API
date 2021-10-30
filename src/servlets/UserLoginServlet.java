@@ -25,7 +25,6 @@ public class UserLoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		APIResponse responseModel = new APIResponse();
-		Gson gsonConverter = new Gson();
 		ControllerMySQL controllerMySQL = new ControllerMySQL(); 
 		response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
@@ -45,34 +44,40 @@ public class UserLoginServlet extends HttpServlet {
         			Doctor doctor = controllerMySQL.searchDoctorByUserId(user);
         			
         			if(patient != null && doctor == null) {
-        				responseModel.setError(false);
+        				
             			responseModel.setPatient(patient);
-            			response.getWriter().print(gsonConverter.toJson(responseModel));
-            			response.getWriter().flush();
+            			sendAPImodel(responseModel, response);
         			} else {
-        				responseModel.setError(false);
+        				
             			responseModel.setDoctor(doctor);
-            			response.getWriter().print(gsonConverter.toJson(responseModel));
-            			response.getWriter().flush();
+            			sendAPImodel(responseModel, response);
         			}
-        			
         		} else {
-        			responseModel.setError(true);
-        			responseModel.setErrorMsg("Incorrect password");
-        			response.getWriter().print(gsonConverter.toJson(responseModel));
-        			response.getWriter().flush();
+        			sendMessage("Incorrect password", true, response);
         		}
         	} else {
-        		responseModel.setError(true);
-    			responseModel.setErrorMsg("No user found with that email");
-    			response.getWriter().print(gsonConverter.toJson(responseModel));
-    			response.getWriter().flush();
+        		sendMessage("No user found with that email", true, response);
         	}
         } else {
-        	responseModel.setError(true);
-			responseModel.setErrorMsg("Parameters missing");
-			response.getWriter().print(gsonConverter.toJson(responseModel));
-			response.getWriter().flush();
+        	sendMessage("Parameters missing", true, response);
         }
+	}
+	
+	public void sendAPImodel(APIResponse responseModel, HttpServletResponse response) throws ServletException, IOException {
+		
+		Gson gsonConverter = new Gson();
+		responseModel.setError(false);
+		response.getWriter().print(gsonConverter.toJson(responseModel));
+		response.getWriter().flush();
+	}
+	
+	private void sendMessage(String message, boolean error, HttpServletResponse response) throws ServletException, IOException {
+		
+		Gson gsonConverter = new Gson();
+		APIResponse responseModel = new APIResponse();
+		responseModel.setError(error);
+		responseModel.setAPImessage(message);
+		response.getWriter().print(gsonConverter.toJson(responseModel));
+		response.getWriter().flush();
 	}
 }

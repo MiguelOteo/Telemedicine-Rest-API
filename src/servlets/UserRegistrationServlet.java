@@ -26,8 +26,6 @@ public class UserRegistrationServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		APIResponse responseModel = new APIResponse();
-		Gson gsonConverter = new Gson();
 		ControllerMySQL controllerMySQL = new ControllerMySQL(); 
 		response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
@@ -53,56 +51,44 @@ public class UserRegistrationServlet extends HttpServlet {
 						if(userType.equals("Patient")) {
 							
 							Boolean patientCreated = controllerMySQL.registerPatient(user.getUserId());
-							
 							if(patientCreated == true) {
-								responseModel.setError(false);
-								response.getWriter().print(gsonConverter.toJson(responseModel));
-								response.getWriter().flush();
+								
+								sendMessage("Patient account created", false, response);
 							} else {
-								responseModel.setError(true);
-								responseModel.setErrorMsg("Error inserting new patient");
-								response.getWriter().print(gsonConverter.toJson(responseModel));
-								response.getWriter().flush();
+								sendMessage("Error inserting new patient", true, response);
 							}
 						} else {
 							
 							Boolean doctorCreated = controllerMySQL.registerDoctor(user.getUserId());
-							
 							if(doctorCreated == true) {
-								responseModel.setError(false);
-								response.getWriter().print(gsonConverter.toJson(responseModel));
-								response.getWriter().flush();
+								
+								sendMessage("Doctor account created", false, response);
 							} else {
-								responseModel.setError(true);
-								responseModel.setErrorMsg("Error inserting new doctor");
-								response.getWriter().print(gsonConverter.toJson(responseModel));
-								response.getWriter().flush();
+								sendMessage("Error inserting new doctor", true, response);
 							}
 						}
 					} else {
-						responseModel.setError(true);
-						responseModel.setErrorMsg("Error inserting new user");
-						response.getWriter().print(gsonConverter.toJson(responseModel));
-						response.getWriter().flush();
+						sendMessage("Error inserting new user", true, response);
 					}
 				} else {
-					responseModel.setError(true);
-					responseModel.setErrorMsg("User already exists");
-					response.getWriter().print(gsonConverter.toJson(responseModel));
-					response.getWriter().flush();
+					sendMessage("User already exists", true, response);
 				}
 			} else {
-				responseModel.setError(true);
-				responseModel.setErrorMsg("Password is not the same");
-				response.getWriter().print(gsonConverter.toJson(responseModel));
-				response.getWriter().flush();
+				sendMessage("Password is not the same", true, response);
 			}
 		} else {
-			responseModel.setError(true);
-			responseModel.setErrorMsg("Parameters missing");
-			response.getWriter().print(gsonConverter.toJson(responseModel));
-			response.getWriter().flush();
+			sendMessage("Parameters missing", true, response);
 		}
+	}
+	
+	private void sendMessage(String message, boolean error, HttpServletResponse response) throws ServletException, IOException {
+		
+		Gson gsonConverter = new Gson();
+		APIResponse responseModel = new APIResponse();
+		responseModel.setError(error);
+		responseModel.setAPImessage(message);
+		response.getWriter().print(gsonConverter.toJson(responseModel));
+		response.getWriter().flush();
 	}
 }
 

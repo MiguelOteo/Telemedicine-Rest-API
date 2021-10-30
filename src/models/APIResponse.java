@@ -10,8 +10,8 @@ public class APIResponse {
 	private Doctor doctor;
 	private Patient patient;
 	
-	// Return the API error message
-	private String errorMsg;
+	// Return the API message (Error message if error boolean is true)
+	private String APImessage;
 	
 	// Default constructor
 	public APIResponse() {}
@@ -22,7 +22,7 @@ public class APIResponse {
 		this.APIresponseId = APIresponseId;
 		this.doctor = doctor;
 		this.patient = patient;
-		this.errorMsg = errorMsg;
+		this.APImessage = errorMsg;
 	}
 
 	// Getter and Setter methods
@@ -42,7 +42,7 @@ public class APIResponse {
 
 	public void setPatient(Patient patient) {this.patient = patient;}
 
-	public String getErrorMsg() {return errorMsg;}
+	public String getAPImessage() {return APImessage;}
 
-	public void setErrorMsg(String errorMsg) {this.errorMsg = errorMsg;}
+	public void setAPImessage(String APImessage) {this.APImessage = APImessage;}
 }
