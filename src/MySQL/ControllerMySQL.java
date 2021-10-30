@@ -12,7 +12,7 @@ import models.User;
 
 public class ControllerMySQL {
 
-	public User registerUser(String userName, String userEmail, String userPassword) {
+	public User registerUser(String userName, String userEmail, String userEncryptedPassword, String userSalt) {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			
@@ -21,7 +21,8 @@ public class ControllerMySQL {
 			
 			statement.setString(1, userName);
 			statement.setString(2, userEmail);
-			statement.setString(3, userPassword);
+			statement.setString(3, userEncryptedPassword);
+			statement.setString(4, userSalt);
 			
 			statement.executeUpdate();		
 			connection.close();
@@ -84,7 +85,8 @@ public class ControllerMySQL {
 			ResultSet resultSet = statement.executeQuery();	
 			
 			if(resultSet.next()) {
-				User user = new User(resultSet.getInt("userId"), resultSet.getString("userName"), resultSet.getString("userEmail"), resultSet.getString("userPassword"));
+				User user = new User(resultSet.getInt("userId"), resultSet.getString("userName"), resultSet.getString("userEmail")
+						, resultSet.getString("userEncryptedPassword"), resultSet.getString("userSalt"));
 				connection.close();
 				return user;
 			} else {

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 
 import MySQL.ControllerMySQL;
+import encryption.SaltBASE64Encryption;
 import models.APIResponse;
 import models.User;
 
@@ -32,10 +33,10 @@ public class UserRegistrationServlet extends HttpServlet {
 		
 		if(request.getParameter("userName") != "" && request.getParameter("userEmail") != "" && request.getParameter("userPassword") != "" && request.getParameter("userRepeatPassword") != "") {
 			
-			String password = request.getParameter("userPassword");
+			String userPassword = request.getParameter("userPassword");
 			String passwordRepeat = request.getParameter("userRepeatPassword");
 			
-			if(password.equals(passwordRepeat)) {
+			if(userPassword.equals(passwordRepeat)) {
 						
 				String userName = request.getParameter("userName");
 				String userEmail = request.getParameter("userEmail");
@@ -45,7 +46,10 @@ public class UserRegistrationServlet extends HttpServlet {
 				
 				if(userExists == null) {
 					
-					User user = controllerMySQL.registerUser(userName, userEmail, password);
+					String userSalt = SaltBASE64Encryption.getSaltvalue(15);
+					String userEncryptedPassword = SaltBASE64Encryption.generateSecurePassword(userPassword, userSalt);
+					
+					User user = controllerMySQL.registerUser(userName, userEmail, userEncryptedPassword, userSalt);
 					
 					if(user != null) {
 						if(userType.equals("Patient")) {

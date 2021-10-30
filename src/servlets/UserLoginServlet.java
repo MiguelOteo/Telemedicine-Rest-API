@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 
 import MySQL.ControllerMySQL;
+import encryption.SaltBASE64Encryption;
 import models.APIResponse;
 import models.Doctor;
 import models.Patient;
@@ -38,7 +39,7 @@ public class UserLoginServlet extends HttpServlet {
         	
         	if(user != null) {
         		
-        		if(user.getPassword().equals(userPassword)) {
+        		if(SaltBASE64Encryption.verifyUserPassword(userPassword, user.getEncryptedPassword(), user.getUserSalt())) {
         			
         			Patient patient = controllerMySQL.searchPatientByUserId(user);
         			Doctor doctor = controllerMySQL.searchDoctorByUserId(user);

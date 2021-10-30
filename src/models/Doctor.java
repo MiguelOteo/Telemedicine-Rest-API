@@ -16,9 +16,9 @@ public class Doctor extends User {
 	public Doctor() {}
 	
 	// Constructor
-	public Doctor(int userId, int doctorId, String doctorName, String doctorEmail, String doctorPassword, String doctorIdentification) {
+	public Doctor(int userId, int doctorId, String doctorName, String doctorEmail, String doctorEncryptedPassword, String userSalt, String doctorIdentification) {
 		
-		super(userId, doctorName, doctorEmail, doctorPassword);
+		super(userId, doctorName, doctorEmail, doctorEncryptedPassword, userSalt);
 		
 		this.doctorId = doctorId;
 		this.doctorIdentification = doctorIdentification;
@@ -26,7 +26,7 @@ public class Doctor extends User {
 	}
 	
 	public Doctor(int doctorId, String doctorIdentification, User user) {
-		super(user.getUserId(), user.getName(), user.getEmail(), user.getPassword());
+		super(user.getUserId(), user.getName(), user.getEmail(), user.getEncryptedPassword(), user.getUserSalt());
 		
 		this.doctorId = doctorId;
 		this.doctorIdentification = doctorIdentification;

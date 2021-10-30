@@ -19,9 +19,9 @@ public class Patient extends User {
 	public Patient() {}
 
 	// Constructor
-	public Patient(int userId, int patientId, String patientName, String patientEmail, String patientPassword, String patientIdNumber) {
+	public Patient(int userId, int patientId, String patientName, String patientEmail, String patientEncryptedPassword, String userSalt, String patientIdNumber) {
 		
-		super(userId, patientName, patientEmail, patientPassword);
+		super(userId, patientName, patientEmail, patientEncryptedPassword, userSalt);
 		
 		this.patientId = patientId;
 		this.patientIdNumber = patientIdNumber;
@@ -29,7 +29,7 @@ public class Patient extends User {
 	}
 	
 	public Patient(int patientId, String patientIdNumber, User user) {
-		super(user.getUserId(), user.getName(), user.getEmail(), user.getPassword());
+		super(user.getUserId(), user.getName(), user.getEmail(), user.getEncryptedPassword(), user.getUserSalt());
 		
 		this.patientId = patientId;
 		this.patientIdNumber = patientIdNumber;

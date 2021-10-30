@@ -7,19 +7,21 @@ public class User {
 	private String userName;
 	private String userEmail;
 	private String userPassword;
-	
+
 	// Salt will be used to encrypt the password
-	private String salt;
-	
+	private String userSalt;
+
 	// Default constructor
-	public User() {}
-	
+	public User() {
+	}
+
 	// Constructor
-	public User(int userId, String userName, String userEmail, String userPassword) {
+	public User(int userId, String userName, String userEmail, String userPassword, String userSalt) {
 		this.userId = userId;
 		this.userName = userName;
 		this.userEmail = userEmail;
 		this.userPassword = userPassword;
+		this.userSalt = userSalt;
 	}
 
 	// Getter and Setter methods
@@ -35,11 +37,11 @@ public class User {
 
 	public void setEmail(String email) {this.userEmail = email;}
 
-	public String getPassword() {return userPassword;}
+	public String getEncryptedPassword() {return userPassword;}
 
-	public void setPassword(String password) {this.userPassword = password;}
+	public void setEncryptedPassword(String password) {this.userPassword = password;}
 
-	public String getSalt() {return salt;}
+	public String getUserSalt() {return userSalt;}
 
-	public void setSalt(String salt) {this.salt = salt;}	
+	public void setUserSalt(String userSalt) {this.userSalt = userSalt;}
 }

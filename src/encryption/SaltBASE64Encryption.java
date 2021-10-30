@@ -1,4 +1,4 @@
-package security;
+package encryption;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -18,12 +18,10 @@ public class SaltBASE64Encryption {
     private static final int keylength = 256;  
       
     // Method to generate a salt value
-    public static String getSaltvalue(int length)   
-    {  
+    public static String getSaltvalue(int length) {  
         StringBuilder finalval = new StringBuilder(length);  
   
-        for (int i = 0; i < length; i++)   
-        {  
+        for (int i = 0; i < length; i++) {  
             finalval.append(characters.charAt(random.nextInt(characters.length())));  
         }  
   
@@ -34,7 +32,7 @@ public class SaltBASE64Encryption {
     public static byte[] hash(char[] password, byte[] salt) {  
         PBEKeySpec spec = new PBEKeySpec(password, salt, iterations, keylength);  
         Arrays.fill(password, Character.MIN_VALUE);  
-        try   {  
+        try {  
             SecretKeyFactory skf = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");  
             return skf.generateSecret(spec).getEncoded();  
         } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {  
