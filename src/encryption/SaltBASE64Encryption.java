@@ -43,7 +43,7 @@ public class SaltBASE64Encryption {
     }  
   
     // Encrypts the password using the original password and salt value.
-    public static String generateSecurePassword(String password, String salt) {  
+    public static String encryptPassword(String password, String salt) {  
         String finalval = null;  
   
         byte[] securePassword = hash(password.toCharArray(), salt.getBytes());  
@@ -57,7 +57,7 @@ public class SaltBASE64Encryption {
     public static boolean verifyUserPassword(String providedPassword, String securedPassword, String salt) {  
         boolean finalval = false;  
 
-        String newSecurePassword = generateSecurePassword(providedPassword, salt);  
+        String newSecurePassword = encryptPassword(providedPassword, salt);  
           
         finalval = newSecurePassword.equalsIgnoreCase(securedPassword);  
           

@@ -47,7 +47,7 @@ public class UserRegistrationServlet extends HttpServlet {
 				if(userExists == null) {
 					
 					String userSalt = SaltBASE64Encryption.getSaltvalue(15);
-					String userEncryptedPassword = SaltBASE64Encryption.generateSecurePassword(userPassword, userSalt);
+					String userEncryptedPassword = SaltBASE64Encryption.encryptPassword(userPassword, userSalt);
 					
 					User user = controllerMySQL.registerUser(userName, userEmail, userEncryptedPassword, userSalt);
 					
