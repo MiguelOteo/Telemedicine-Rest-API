@@ -20,7 +20,7 @@ The "lib" file will be where all the .jar will go.
 This project requires the addition of three .jar to work, paste them in "lib".
 
 1. gson .jar (Link: https://jar-download.com/artifacts/com.google.code.gson/gson/2.8.2/source-code)
-2. json .jar
-3. mysql-connector-java .jar
+2. json .jar (Link: https://jar-download.com/artifacts/org.json)
+3. mysql-connector-java .jar (Link: https://dev.mysql.com/downloads/windows/installer/8.0.html)
 
 Lastly, add them to the project build path.
