@@ -5,9 +5,14 @@ The API recieves https which are use to search, update etc data from the databas
 
 ## Project configuration and set-up
 
-### Tomcat installation
+### 1. Tomcat installation
 A server is needed to run the RestAPI. 
-You can download the tomcat server on the following link: 
+You can download the tomcat server on the following link: https://tomcat.apache.org/download-90.cgi
+After downloading it unzip the file and place it on the path it better suits you on your PC.
+
+### 2. Project configuration (For Eclipse)
+
+
 
 This project requires the addition of three .jar to work.
 
