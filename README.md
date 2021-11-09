@@ -14,7 +14,7 @@ After downloading it, unzip the folder and place it on the path it better suits 
 
 ### 3. Libraries configuration
 
-First, create add a new folder to the project inside "WebContent" folder and called it "WEB-INF" then add a new folder inside of it and name it "lib"                           
+First, create add a new folder to the project inside "WebContent" folder and called it "WEB-INF" then add a new folder inside it and call it "lib"                           
 The "lib" file will be where all the .jar will go.
 
 This project requires the addition of three .jar to work, paste them in "lib".
