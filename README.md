@@ -27,3 +27,7 @@ This project requires the addition of three .jar to work, paste them in "WebCont
 3. mysql-connector-java .jar (Link: https://dev.mysql.com/downloads/windows/installer/8.0.html)
 
 Lastly, add them to the project build path.
+
+# Reminder
+This API it is used to handle a MySQL database, for this project to work MySQL server needs to be created for the API to access there
+You can download MySQL with all the tools here: https://dev.mysql.com/downloads/mysql/
