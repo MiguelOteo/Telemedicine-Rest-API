@@ -10,9 +10,11 @@ A server is needed to run the RestAPI.
 You can download the tomcat server on the following link: https://tomcat.apache.org/download-90.cgi                                                                                 
 After downloading it, unzip the folder and place it on the path it better suits you on your PC.
 
+Then on Eclipse click on "Window", "Preferences" and search for the option "Server" then click on "Runtime Enviroment" and add the Tomcat by selecting the file previously downloaded.
+
 ### 2. Maven project configuration (For Eclipse)
 Download the project from github and open it with Eclipse. 
-In order for the project to work be sure to have all the possible plugins needed for maven projects, then right-click on the project 
+In order for the project to work be sure to have all the possible plugins needed for maven projects, then right-click on the project, click on properties, build path and then click on the option "Add Library". Lastly, select the option "Server runtime" and add the "Apache Tomcat vX.0 (The version you dowloaded on step 1)".
 
 ### 3. Libraries configuration
                      
