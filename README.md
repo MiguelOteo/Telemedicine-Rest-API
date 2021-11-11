@@ -10,14 +10,13 @@ A server is needed to run the RestAPI.
 You can download the tomcat server on the following link: https://tomcat.apache.org/download-90.cgi                                                                                 
 After downloading it, unzip the folder and place it on the path it better suits you on your PC.
 
-### 2. Project configuration (For Eclipse)
+### 2. Maven project configuration (For Eclipse)
+Download the project from github and open it with Eclipse. 
+In order for the project to work be sure to have all the possible plugins needed for maven projects, then right-click on the project 
 
 ### 3. Libraries configuration
-
-First, create add a new folder to the project inside "WebContent" folder and called it "WEB-INF" then add a new folder inside it and call it "lib"                           
-The "lib" file will be where all the .jar will go. It should look like /WebContent/WEB-INF/lib
-
-This project requires the addition of three .jar to work, paste them in "lib".
+                     
+This project requires the addition of three .jar to work, paste them in "WebContent/WEB-INF/lib".
 
 1. gson .jar (Link: https://jar-download.com/artifacts/com.google.code.gson/gson/2.8.2/source-code)
 2. json .jar (Link: https://jar-download.com/artifacts/org.json)
