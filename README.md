@@ -14,7 +14,9 @@ Then on Eclipse click on "Window", "Preferences" and search for the option "Serv
 
 ### 2. Maven project configuration (For Eclipse)
 Download the project from github and open it with Eclipse. 
-In order for the project to work be sure to have all the possible plugins needed for maven projects, then right-click on the project, click on properties, build path and then click on the option "Add Library". Lastly, select the option "Server runtime" and add the "Apache Tomcat vX.0 (The version you dowloaded on step 1)".
+In order for the project to work be sure to have all the possible plugins needed for maven projects, then right-click on the project, click on properties, build path and then click on the option "Add Library".
+
+Lastly, select the option "Server runtime" and add the "Apache Tomcat vX.0 (The version you dowloaded on step 1)".
 
 ### 3. Libraries configuration
                      
