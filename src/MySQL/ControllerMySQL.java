@@ -259,6 +259,29 @@ public class ControllerMySQL {
 		}
 	}
 	
+	public Doctor searchDoctorByDoctorId(int doctorId){
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			
+			Connection connection = DriverManager.getConnection(CommonParams.BASE_DB_URL, CommonParams.DB_HOST, CommonParams.DB_PASSWORD);
+			PreparedStatement statement = connection.prepareStatement(CommonParams.SEARCH_DOCTOR_BY_DOCTORID);
+			
+			statement.setInt(1, doctorId);
+			ResultSet resultSet = statement.executeQuery();
+			
+			if(resultSet.next()) {
+				User user = searchUserById(resultSet.getInt("userId"));
+				Doctor doctor = new Doctor(resultSet.getInt("doctorId"), resultSet.getString("doctorIdentification"), user);
+				return doctor;
+			} else {
+				return null;
+			}
+			
+		} catch (Exception error) {
+			error.printStackTrace();
+			return null;
+		}
+	}
 }
 
 

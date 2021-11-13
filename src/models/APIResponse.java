@@ -1,5 +1,7 @@
 package models;
 
+import java.util.List;
+
 public class APIResponse {
 	
 	// Tell if response is an error or not
@@ -9,6 +11,7 @@ public class APIResponse {
 	private int APIresponseId;
 	private Doctor doctor;
 	private Patient patient;
+	private List<Patient> noDoctorPatients;
 	
 	// Return the API message (Error message if error boolean is true)
 	private String APImessage;
@@ -17,12 +20,13 @@ public class APIResponse {
 	public APIResponse() {}
 	
 	// Constructor
-	public APIResponse(int APIresponseId, boolean error, Doctor doctor, Patient patient, String errorMsg) {
+	public APIResponse(int APIresponseId, boolean error, Doctor doctor, Patient patient, String errorMsg, List<Patient> noDoctorPatients) {
 		this.error = error;
 		this.APIresponseId = APIresponseId;
 		this.doctor = doctor;
 		this.patient = patient;
 		this.APImessage = errorMsg;
+		this.noDoctorPatients = noDoctorPatients;
 	}
 
 	// Getter and Setter methods
@@ -34,7 +38,7 @@ public class APIResponse {
 
 	public void setAPIresponseId(int APIresponseId) {this.APIresponseId = APIresponseId;}
 
-	public User getDoctor() {return doctor;}
+	public Doctor getDoctor() {return doctor;}
 
 	public void setDoctor(Doctor doctor) {this.doctor =doctor;}
 	
@@ -45,4 +49,8 @@ public class APIResponse {
 	public String getAPImessage() {return APImessage;}
 
 	public void setAPImessage(String APImessage) {this.APImessage = APImessage;}
+
+	public List<Patient> getNoDoctorPatients() {return noDoctorPatients;}
+
+	public void setNoDoctorPatients(List<Patient> noDoctorPatients) {this.noDoctorPatients = noDoctorPatients;}	
 }
