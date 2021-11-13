@@ -282,6 +282,57 @@ public class ControllerMySQL {
 			return null;
 		}
 	}
+	
+	public boolean addPatientIdNumber(String patientIdNumber, int patientId) {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			
+			Connection connection = DriverManager.getConnection(CommonParams.BASE_DB_URL, CommonParams.DB_HOST, CommonParams.DB_PASSWORD);
+			PreparedStatement statement = connection.prepareStatement(CommonParams.UPDATE_PATIENT_ID_NUMBER);
+			
+			statement.setString(1, patientIdNumber);
+			statement.setInt(2, patientId);
+			
+			int result = statement.executeUpdate();
+			if(result != 0) {
+				connection.close();
+				return true;
+			} else {
+				connection.close();
+				return false;
+			}
+
+		} catch (Exception error) {
+			error.printStackTrace();
+			return false;
+		}
+		
+	}
+	
+	public boolean addDoctorIdentification(String doctorIdentification, int doctorId) {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			
+			Connection connection = DriverManager.getConnection(CommonParams.BASE_DB_URL, CommonParams.DB_HOST, CommonParams.DB_PASSWORD);
+			PreparedStatement statement = connection.prepareStatement(CommonParams.UPDATE_DOCTOR_DOCTOR_IDENTIFICATION);
+			
+			statement.setString(1, doctorIdentification);
+			statement.setInt(2, doctorId);
+			
+			int result = statement.executeUpdate();
+			if(result != 0) {
+				connection.close();
+				return true;
+			} else {
+				connection.close();
+				return false;
+			}
+			
+		} catch (Exception error) {
+			error.printStackTrace();
+			return false;
+		}
+	}
 }
 
 

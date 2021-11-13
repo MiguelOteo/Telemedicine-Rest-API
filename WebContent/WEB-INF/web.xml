@@ -9,4 +9,14 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>addPatientIdServlet</display-name>
+    <servlet-name>addPatientIdServlet</servlet-name>
+    <servlet-class>servlets.addPatientIdServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>addPatientIdServlet</servlet-name>
+    <url-pattern>/addPatientIdServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

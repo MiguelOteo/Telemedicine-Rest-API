@@ -33,8 +33,6 @@ public class ListPatientsServlet extends HttpServlet {
 		
 		int doctorId = Integer.parseInt(request.getParameter("doctorId"));
 		
-		System.out.println(controllerMySQL.searchDoctorByDoctorId(doctorId).getEmail());
-		
 		if(controllerMySQL.searchDoctorByDoctorId(doctorId) != null) {
 			
 			List<Patient> patientList = controllerMySQL.listAllPatientsWithOutDoctor();
