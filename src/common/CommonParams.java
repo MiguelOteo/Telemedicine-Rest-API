@@ -29,5 +29,5 @@ public @interface CommonParams {
 	// Update data base 
 	public final String UPDATE_PATIENT_DOCTOR = "UPDATE Patients SET doctorId = ? WHERE patientId = ?;";
 	public final String UPDATE_PATIENT_ID_NUMBER = "UPDATE Patients SET patientIdNumber = ? WHERE patientId = ?;";
-	public final String UPDATE_DOCTOR_DOCTOR_IDENTIFICATION = "UPDATE Doctors SET doctorIdentification = ? WHERE doctorID = ?;";
+	public final String UPDATE_DOCTOR_DOCTOR_IDENTIFICATION = "UPDATE Doctors SET doctorIdentification = ? WHERE doctorId = ?;";
 }

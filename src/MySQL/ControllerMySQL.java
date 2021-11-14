@@ -294,6 +294,8 @@ public class ControllerMySQL {
 			statement.setInt(2, patientId);
 			
 			int result = statement.executeUpdate();
+			statement.close();
+			
 			if(result != 0) {
 				connection.close();
 				return true;
@@ -320,6 +322,8 @@ public class ControllerMySQL {
 			statement.setInt(2, doctorId);
 			
 			int result = statement.executeUpdate();
+			statement.close();
+			
 			if(result != 0) {
 				connection.close();
 				return true;
