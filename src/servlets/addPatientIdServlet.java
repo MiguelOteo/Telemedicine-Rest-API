@@ -25,8 +25,8 @@ public class addPatientIdServlet extends HttpServlet {
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 		
-		System.out.println(request.getParameter("patientId"));
-		System.out.println(request.getParameter("patientIdNumber"));
+		System.out.println("Patient ID: " + request.getParameter("patientId"));
+		System.out.println("Patient ID numb: " +request.getParameter("patientIdNumber"));
 
 		if(request.getParameter("patientId") != "" && request.getParameter("patientIdNumber") != "") {
 			

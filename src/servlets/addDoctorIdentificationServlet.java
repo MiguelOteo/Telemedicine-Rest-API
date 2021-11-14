@@ -24,9 +24,6 @@ public class addDoctorIdentificationServlet extends HttpServlet {
 		ControllerMySQL controllerMySQL = new ControllerMySQL();
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
-		
-		System.out.println(request.getParameter("doctorId"));
-		System.out.println(request.getParameter("doctorIdentification"));
 
 		if(request.getParameter("doctorId") != "" && request.getParameter("doctorIdentification") != "") {
 			
@@ -35,7 +32,6 @@ public class addDoctorIdentificationServlet extends HttpServlet {
 
 			boolean updateResult = controllerMySQL.addDoctorIdentification(doctorIdentification, doctorId);
 			if(updateResult) {
-				
 				sendMessage("ID inserted successfuly", !updateResult, response);
 			} else {
 				sendMessage("ID insertion error", !updateResult, response);
