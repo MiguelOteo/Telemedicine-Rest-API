@@ -29,4 +29,14 @@
     <servlet-name>addDoctorAutentificationServlet</servlet-name>
     <url-pattern>/addDoctorAutentificationServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>addPatientsToDoctorServlet</display-name>
+    <servlet-name>addPatientsToDoctorServlet</servlet-name>
+    <servlet-class>servlets.addPatientsToDoctorServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>addPatientsToDoctorServlet</servlet-name>
+    <url-pattern>/addPatientsToDoctorServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
