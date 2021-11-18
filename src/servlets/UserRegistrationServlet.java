@@ -11,6 +11,7 @@ import com.google.gson.Gson;
 
 import MySQL.ControllerMySQL;
 import encryption.SaltBASE64Encryption;
+import models.APIRequest;
 import models.APIResponse;
 import models.User;
 
@@ -30,29 +31,24 @@ public class UserRegistrationServlet extends HttpServlet {
 		ControllerMySQL controllerMySQL = new ControllerMySQL(); 
 		response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
+        
+		APIRequest requestAPI = new Gson().fromJson(request.getParameter("APIRequest"), APIRequest.class);
 		
-		if(request.getParameter("userName") != "" && request.getParameter("userEmail") != "" && request.getParameter("userPassword") != "" && request.getParameter("userRepeatPassword") != "") {
+		if(requestAPI.getUserName() != null && requestAPI.getUserEmail() != null && requestAPI.getUserPassword() != null && requestAPI.getUserPasswordRepeat() != null) {
 			
-			String userPassword = request.getParameter("userPassword");
-			String passwordRepeat = request.getParameter("userRepeatPassword");
-			
-			if(userPassword.equals(passwordRepeat)) {
-						
-				String userName = request.getParameter("userName");
-				String userEmail = request.getParameter("userEmail");
-				String userType = request.getParameter("userType");
-				
-				User userExists = controllerMySQL.searchUserByEmail(userEmail);
+			if(requestAPI.getUserPassword().equals(requestAPI.getUserPasswordRepeat())) {
+								
+				User userExists = controllerMySQL.searchUserByEmail(requestAPI.getUserEmail());
 				
 				if(userExists == null) {
 					
 					String userSalt = SaltBASE64Encryption.getSaltvalue(15);
-					String userEncryptedPassword = SaltBASE64Encryption.encryptPassword(userPassword, userSalt);
+					String userEncryptedPassword = SaltBASE64Encryption.encryptPassword(requestAPI.getUserPassword(), userSalt);
 					
-					User user = controllerMySQL.registerUser(userName, userEmail, userEncryptedPassword, userSalt);
+					User user = controllerMySQL.registerUser(requestAPI.getUserName(), requestAPI.getUserEmail(), userEncryptedPassword, userSalt);
 					
 					if(user != null) {
-						if(userType.equals("Patient")) {
+						if(requestAPI.getUserType().equals("Patient")) {
 							
 							Boolean patientCreated = controllerMySQL.registerPatient(user.getUserId());
 							if(patientCreated == true) {
@@ -87,11 +83,10 @@ public class UserRegistrationServlet extends HttpServlet {
 	
 	private void sendMessage(String message, boolean error, HttpServletResponse response) throws ServletException, IOException {
 		
-		Gson gsonConverter = new Gson();
 		APIResponse responseModel = new APIResponse();
 		responseModel.setError(error);
 		responseModel.setAPImessage(message);
-		response.getWriter().print(gsonConverter.toJson(responseModel));
+		response.getWriter().print(new Gson().toJson(responseModel));
 		response.getWriter().flush();
 	}
 }

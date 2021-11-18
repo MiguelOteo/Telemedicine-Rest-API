@@ -1,6 +1,8 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,42 +14,56 @@ import com.google.gson.Gson;
 import MySQL.ControllerMySQL;
 import models.APIRequest;
 import models.APIResponse;
+import models.Patient;
 
-@WebServlet("/addDoctorIdentification")
-public class addDoctorIdentificationServlet extends HttpServlet {
+@WebServlet("/listDoctorPatients")
+public class ListDoctorPatientsServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
-       
-    public addDoctorIdentificationServlet() {super();}
+
+    public ListDoctorPatientsServlet() {super();}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
+		APIResponse responseModel = new APIResponse();
 		ControllerMySQL controllerMySQL = new ControllerMySQL();
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
-
+		
 		APIRequest requestAPI = new Gson().fromJson(request.getParameter("APIRequest"), APIRequest.class);
 		
-		if(requestAPI.getDoctorId() != 0 && requestAPI.getDoctorIdentification() != null) {
-
-			boolean updateResult = controllerMySQL.addDoctorIdentification(requestAPI.getDoctorIdentification(), requestAPI.getDoctorId());
-			if(updateResult) {
-				sendMessage("ID inserted successfuly", !updateResult, response);
-			} else {
-				sendMessage("ID insertion error", !updateResult, response);
-			}
+		int doctorId = requestAPI.getDoctorId();
+		
+		if(controllerMySQL.searchDoctorByDoctorId(doctorId) != null) {
 			
+			List<Patient> patientList = controllerMySQL.listAllDoctorPatients(doctorId);
+
+			if (patientList != null) {
+				responseModel.setNoDoctorPatients(patientList);
+				sendPatients(responseModel, response);
+			} else {
+				sendMessage("No patients found", false, response);
+			}
 		} else {
-			sendMessage("Parameters missing", true, response);
+			sendMessage("Error verifiying your account", true, response);
 		}
 	}
-	
+
 	private void sendMessage(String message, boolean error, HttpServletResponse response) throws ServletException, IOException {
-		
+
+		Gson gsonConverter = new Gson();
 		APIResponse responseModel = new APIResponse();
 		responseModel.setError(error);
 		responseModel.setAPImessage(message);
-		response.getWriter().print(new Gson().toJson(responseModel));
+		response.getWriter().print(gsonConverter.toJson(responseModel));
+		response.getWriter().flush();
+	}
+
+	private void sendPatients(APIResponse responseModel, HttpServletResponse response) throws ServletException, IOException {
+
+		Gson gsonConverter = new Gson();
+		responseModel.setError(false);
+		response.getWriter().print(gsonConverter.toJson(responseModel));
 		response.getWriter().flush();
 	}
 }

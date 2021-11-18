@@ -11,6 +11,7 @@ import com.google.gson.Gson;
 
 import MySQL.ControllerMySQL;
 import encryption.SaltBASE64Encryption;
+import models.APIRequest;
 import models.APIResponse;
 import models.Doctor;
 import models.Patient;
@@ -30,16 +31,15 @@ public class UserLoginServlet extends HttpServlet {
 		response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         
-        if(request.getParameter("userEmail") != "" && request.getParameter("userPassword") != "") {
+        APIRequest requestAPI = new Gson().fromJson(request.getParameter("APIRequest"), APIRequest.class);
+        
+        if(requestAPI.getUserEmail() != null && requestAPI.getUserPassword() != null) {
         	
-        	String userEmail = request.getParameter("userEmail");
-        	String userPassword = request.getParameter("userPassword");
-        	
-        	User user = controllerMySQL.searchUserByEmail(userEmail);
+        	User user = controllerMySQL.searchUserByEmail(requestAPI.getUserEmail());
         	
         	if(user != null) {
         		
-        		if(SaltBASE64Encryption.verifyUserPassword(userPassword, user.getEncryptedPassword(), user.getUserSalt())) {
+        		if(SaltBASE64Encryption.verifyUserPassword(requestAPI.getUserPassword(), user.getEncryptedPassword(), user.getUserSalt())) {
         			
         			Patient patient = controllerMySQL.searchPatientByUserId(user);
         			Doctor doctor = controllerMySQL.searchDoctorByUserId(user);
@@ -66,19 +66,17 @@ public class UserLoginServlet extends HttpServlet {
 	
 	public void sendAPImodel(APIResponse responseModel, HttpServletResponse response) throws ServletException, IOException {
 		
-		Gson gsonConverter = new Gson();
 		responseModel.setError(false);
-		response.getWriter().print(gsonConverter.toJson(responseModel));
+		response.getWriter().print(new Gson().toJson(responseModel));
 		response.getWriter().flush();
 	}
 	
 	private void sendMessage(String message, boolean error, HttpServletResponse response) throws ServletException, IOException {
-		
-		Gson gsonConverter = new Gson();
+
 		APIResponse responseModel = new APIResponse();
 		responseModel.setError(error);
 		responseModel.setAPImessage(message);
-		response.getWriter().print(gsonConverter.toJson(responseModel));
+		response.getWriter().print(new Gson().toJson(responseModel));
 		response.getWriter().flush();
 	}
 }

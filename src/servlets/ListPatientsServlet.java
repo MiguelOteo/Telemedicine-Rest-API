@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 
 import MySQL.ControllerMySQL;
+import models.APIRequest;
 import models.APIResponse;
 import models.Patient;
 
@@ -29,7 +30,9 @@ public class ListPatientsServlet extends HttpServlet {
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 		
-		int doctorId = Integer.parseInt(request.getParameter("doctorId"));
+		APIRequest requestAPI = new Gson().fromJson(request.getParameter("APIRequest"), APIRequest.class);
+		
+		int doctorId = requestAPI.getDoctorId();
 		
 		if(controllerMySQL.searchDoctorByDoctorId(doctorId) != null) {
 			
@@ -64,3 +67,14 @@ public class ListPatientsServlet extends HttpServlet {
 		response.getWriter().flush();
 	}
 }
+
+
+
+
+
+
+
+
+
+
+

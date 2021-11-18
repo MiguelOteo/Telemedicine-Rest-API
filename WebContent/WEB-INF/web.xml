@@ -39,4 +39,14 @@
     <servlet-name>addPatientsToDoctorServlet</servlet-name>
     <url-pattern>/addPatientsToDoctorServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ListDoctorPatientsServlet</display-name>
+    <servlet-name>ListDoctorPatientsServlet</servlet-name>
+    <servlet-class>servlets.ListDoctorPatientsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ListDoctorPatientsServlet</servlet-name>
+    <url-pattern>/ListDoctorPatientsServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -243,9 +243,9 @@ public class ControllerMySQL {
 			PreparedStatement statement = connection.prepareStatement(CommonParams.UPDATE_PATIENT_DOCTOR);
 			
 			statement.setInt(1, doctorId);
-			statement.setInt(1, patientId);
+			statement.setInt(2, patientId);
 			int result = statement.executeUpdate();
-			
+
 			if(result != 0) {
 				connection.close();
 				return true;
