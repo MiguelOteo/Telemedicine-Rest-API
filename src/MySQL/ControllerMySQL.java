@@ -259,6 +259,30 @@ public class ControllerMySQL {
 		}
 	}
 	
+	public boolean deletePatientAssignment(int patientId) {
+		
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			
+			Connection connection = DriverManager.getConnection(CommonParams.BASE_DB_URL, CommonParams.DB_HOST, CommonParams.DB_PASSWORD);
+			PreparedStatement statement = connection.prepareStatement(CommonParams.UPDATE_PATIENT_ASSIGNMENT_TO_NULL);
+			
+			statement.setInt(1, patientId);
+			int result = statement.executeUpdate();
+
+			if(result != 0) {
+				connection.close();
+				return true;
+			} else {
+				connection.close();
+				return false;
+			}
+		}  catch(SQLException | ClassNotFoundException error) {
+			error.printStackTrace();
+			return false;
+		}
+	}
+	
 	public Doctor searchDoctorByDoctorId(int doctorId){
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");

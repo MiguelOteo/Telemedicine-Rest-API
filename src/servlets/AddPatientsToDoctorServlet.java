@@ -17,36 +17,35 @@ import models.APIResponse;
 import models.Patient;
 
 @WebServlet("/addPatientsToDoctor")
-public class addPatientsToDoctorServlet extends HttpServlet {
+public class AddPatientsToDoctorServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 
-    public addPatientsToDoctorServlet() {super();}
-    
+	public AddPatientsToDoctorServlet() {super();}
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		Gson gsonConverter = new Gson();
+
 		APIResponse responseModel = new APIResponse();
 		ControllerMySQL controllerMySQL = new ControllerMySQL();
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
-		
-		APIRequest requestAPI = gsonConverter.fromJson(request.getParameter("APIRequest"), APIRequest.class);
-		
+
+		APIRequest requestAPI = new Gson().fromJson(request.getParameter("APIRequest"), APIRequest.class);
+
 		int doctorId = requestAPI.getDoctorId();
 
-		if(controllerMySQL.searchDoctorByDoctorId(doctorId) != null) {
-					
-			for (Integer patientId: requestAPI.getSelectedPatients()) {
-				
+		if (controllerMySQL.searchDoctorByDoctorId(doctorId) != null) {
+
+			for (Integer patientId : requestAPI.getSelectedPatients()) {
+
 				boolean insertion = controllerMySQL.addPatientToDoctor(doctorId, patientId);
-				
-				if(!insertion) {
+
+				if (!insertion) {
 					sendMessage("Error adding the patients", true, response);
 					break;
 				}
 			}
-			
+
 			List<Patient> patientList = controllerMySQL.listAllPatientsWithOutDoctor();
 
 			if (patientList != null) {
@@ -55,27 +54,26 @@ public class addPatientsToDoctorServlet extends HttpServlet {
 			} else {
 				sendMessage("No patients found", false, response);
 			}
-			
+
 		} else {
 			sendMessage("Error verifiying your account", true, response);
 		}
 	}
-	
+
 	private void sendMessage(String message, boolean error, HttpServletResponse response) throws ServletException, IOException {
 
-		Gson gsonConverter = new Gson();
 		APIResponse responseModel = new APIResponse();
 		responseModel.setError(error);
 		responseModel.setAPImessage(message);
-		response.getWriter().print(gsonConverter.toJson(responseModel));
+		response.getWriter().print(new Gson().toJson(responseModel));
 		response.getWriter().flush();
 	}
 
 	private void sendPatients(APIResponse responseModel, HttpServletResponse response) throws ServletException, IOException {
 
-		Gson gsonConverter = new Gson();
 		responseModel.setError(false);
-		response.getWriter().print(gsonConverter.toJson(responseModel));
+		response.getWriter().print(new Gson().toJson(responseModel));
 		response.getWriter().flush();
 	}
+
 }

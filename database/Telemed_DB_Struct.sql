@@ -1,7 +1,7 @@
 CREATE TABLE users (
 	
 	userId INT PRIMARY KEY AUTO_INCREMENT,
-	userName VARCHAR(15) NOT NULL, 
+	userName VARCHAR(30) NOT NULL, 
 	userEmail VARCHAR(30) NOT NULL,
 	userEncryptedPassword VARCHAR(256) NOT NULL,
 	userSalt VARCHAR(15) NOT NULL

@@ -11,42 +11,32 @@
   </welcome-file-list>
   <servlet>
     <description></description>
-    <display-name>addPatientIdServlet</display-name>
-    <servlet-name>addPatientIdServlet</servlet-name>
-    <servlet-class>servlets.addPatientIdServlet</servlet-class>
+    <display-name>AddPatientsToDoctorServlet</display-name>
+    <servlet-name>AddPatientsToDoctorServlet</servlet-name>
+    <servlet-class>servlets.AddPatientsToDoctorServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>addPatientIdServlet</servlet-name>
-    <url-pattern>/addPatientIdServlet</url-pattern>
+    <servlet-name>AddPatientsToDoctorServlet</servlet-name>
+    <url-pattern>/AddPatientsToDoctorServlet</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>addDoctorAutentificationServlet</display-name>
-    <servlet-name>addDoctorAutentificationServlet</servlet-name>
-    <servlet-class>servlets.addDoctorAutentificationServlet</servlet-class>
+    <display-name>AddDoctorIdentificationServlet</display-name>
+    <servlet-name>AddDoctorIdentificationServlet</servlet-name>
+    <servlet-class>servlets.AddDoctorIdentificationServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>addDoctorAutentificationServlet</servlet-name>
-    <url-pattern>/addDoctorAutentificationServlet</url-pattern>
+    <servlet-name>AddDoctorIdentificationServlet</servlet-name>
+    <url-pattern>/AddDoctorIdentificationServlet</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>addPatientsToDoctorServlet</display-name>
-    <servlet-name>addPatientsToDoctorServlet</servlet-name>
-    <servlet-class>servlets.addPatientsToDoctorServlet</servlet-class>
+    <display-name>AddPatientIdServlet</display-name>
+    <servlet-name>AddPatientIdServlet</servlet-name>
+    <servlet-class>servlets.AddPatientIdServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>addPatientsToDoctorServlet</servlet-name>
-    <url-pattern>/addPatientsToDoctorServlet</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>ListDoctorPatientsServlet</display-name>
-    <servlet-name>ListDoctorPatientsServlet</servlet-name>
-    <servlet-class>servlets.ListDoctorPatientsServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ListDoctorPatientsServlet</servlet-name>
-    <url-pattern>/ListDoctorPatientsServlet</url-pattern>
+    <servlet-name>AddPatientIdServlet</servlet-name>
+    <url-pattern>/AddPatientIdServlet</url-pattern>
   </servlet-mapping>
 </web-app>
