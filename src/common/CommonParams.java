@@ -19,6 +19,7 @@ public @interface CommonParams {
 	public final String SEARCH_USER_BY_EMAIL = "SELECT * FROM Users WHERE userEmail = ?;";
 	public final String SEARCH_USER_BY_USERID = "SELECT * FROM Users WHERE userId = ?;";
 	public final String SEARCH_PATIENT_BY_USERID = "SELECT * FROM Patients WHERE userId = ?;";
+	public final String SEARCH_PATIENT_BY_PATIENTID = "SELECT * FROM Patients WHERE patientId = ?;";
 	public final String SEARCH_DOCTOR_BY_USERID = "SELECT * FROM Doctors WHERE userId = ?;";
 	public final String SEARCH_DOCTOR_BY_DOCTORID = "SELECT * FROM Doctors WHERE doctorId = ?;";
 	

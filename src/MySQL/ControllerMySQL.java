@@ -129,6 +129,33 @@ public class ControllerMySQL {
 		}
 	}
 	
+public Patient searchPatientByPatientId (int patientId) {
+		
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			
+			Connection connection = DriverManager.getConnection(CommonParams.BASE_DB_URL, CommonParams.DB_HOST, CommonParams.DB_PASSWORD);
+			PreparedStatement statement = connection.prepareStatement(CommonParams.SEARCH_PATIENT_BY_PATIENTID);
+			
+			statement.setInt(1, patientId);
+			ResultSet resultSet = statement.executeQuery();	
+			
+			if(resultSet.next()) {
+				User user = searchUserById(resultSet.getInt("userId"));
+				Patient patient = new Patient(resultSet.getInt("patientId"), resultSet.getString("patientIdNumber"), user);
+				connection.close();
+				return patient;
+			} else {
+				connection.close();
+				return null;
+			}
+			
+		} catch(SQLException | ClassNotFoundException error) {
+			error.printStackTrace();
+			return null;
+		}
+	} 
+	
 	public Doctor searchDoctorByUserId (User user) {
 		
 		try {

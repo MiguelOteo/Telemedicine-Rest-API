@@ -39,4 +39,14 @@
     <servlet-name>AddPatientIdServlet</servlet-name>
     <url-pattern>/AddPatientIdServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>GetPatientInformationServlet</display-name>
+    <servlet-name>GetPatientInformationServlet</servlet-name>
+    <servlet-class>servlets.GetPatientInformationServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetPatientInformationServlet</servlet-name>
+    <url-pattern>/GetPatientInformationServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
