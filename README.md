@@ -29,4 +29,4 @@ This project uses the following Maven dependencies
 ## Reminder
 This API it is used to handle a MySQL database, for this project to work MySQL server needs to be created for the API to access it.
 
-You can download MySQL with all the tools here: https://dev.mysql.com/downloads/mysql/
+You can download MySQL with all the tools here: https://dev.mysql.com/downloads/installer/
