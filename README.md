@@ -20,7 +20,7 @@ Lastly, select the option "Server runtime" and add the "Apache Tomcat vX.0 (The 
 
 ### 3. Maven dependencies
                      
-This project uises the following Maven dependencies
+This project uses the following Maven dependencies
 
 1. gson dependency: https://mvnrepository.com/artifact/com.google.code.gson/gson
 2. json dependency: https://mvnrepository.com/artifact/org.json/json
