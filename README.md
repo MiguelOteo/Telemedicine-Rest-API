@@ -22,9 +22,9 @@ Lastly, select the option "Server runtime" and add the "Apache Tomcat vX.0 (The 
                      
 This project uises the following Maven dependencies
 
-1. gson .jar (Link: https://jar-download.com/artifacts/com.google.code.gson/gson/2.8.2/source-code)
-2. json .jar (Link: https://jar-download.com/artifacts/org.json)
-3. mysql-connector-java .jar (Link: https://dev.mysql.com/downloads/windows/installer/8.0.html)
+1. gson dependency: https://mvnrepository.com/artifact/com.google.code.gson/gson
+2. json dependency: https://mvnrepository.com/artifact/org.json/json
+3. mysql-connector-java dependency: https://mvnrepository.com/artifact/mysql/mysql-connector-java
 
 ## Reminder
 This API it is used to handle a MySQL database, for this project to work MySQL server needs to be created for the API to access it.
