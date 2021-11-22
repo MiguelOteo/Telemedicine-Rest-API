@@ -58,4 +58,5 @@ public class APIRequest {
 	public String getPatientIdNumber() {return patientIdNumber;}
 
 	public void setPatientIdNumber(String patientIdNumber) {this.patientIdNumber = patientIdNumber;}	
+		
 }
