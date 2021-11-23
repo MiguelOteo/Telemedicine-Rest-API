@@ -32,4 +32,5 @@ public @interface CommonParams {
 	public final String UPDATE_PATIENT_ASSIGNMENT_TO_NULL = "UPDATE Patients SET doctorId = NULL WHERE patientId = ?;";
 	public final String UPDATE_PATIENT_ID_NUMBER = "UPDATE Patients SET patientIdNumber = ? WHERE patientId = ?;";
 	public final String UPDATE_DOCTOR_DOCTOR_IDENTIFICATION = "UPDATE Doctors SET doctorIdentification = ? WHERE doctorId = ?;";
+	public final String CHANGE_USER_PASSWORD = "UPDATE Users SET userEncryptedPassword = ? WHERE userId = ?;";
 }

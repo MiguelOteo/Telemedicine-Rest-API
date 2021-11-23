@@ -103,6 +103,34 @@ public class ControllerMySQL {
 		}
 	}
 	
+	public boolean changePassword(String encryptedPassword, int userId) {
+		
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			
+			Connection connection = DriverManager.getConnection(CommonParams.BASE_DB_URL, CommonParams.DB_HOST, CommonParams.DB_PASSWORD);
+			PreparedStatement statement = connection.prepareStatement(CommonParams.CHANGE_USER_PASSWORD);
+			
+			statement.setString(1, encryptedPassword);
+			statement.setInt(2, userId);
+			
+			int result = statement.executeUpdate();
+			statement.close();
+			
+			if(result != 0) {
+				connection.close();
+				return true;
+			} else {
+				connection.close();
+				return false;
+			}
+			
+		} catch (Exception error) {
+			error.printStackTrace();
+			return false;
+		}
+	}
+	
 	public Patient searchPatientByUserId (User user) {
 		
 		try {
