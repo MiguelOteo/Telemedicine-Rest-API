@@ -131,6 +131,35 @@ public class ControllerMySQL {
 		}
 	}
 	
+	public boolean updateAccount(String userName, String userEmail, int userId) {
+		
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			
+			Connection connection = DriverManager.getConnection(CommonParams.BASE_DB_URL, CommonParams.DB_HOST, CommonParams.DB_PASSWORD);
+			PreparedStatement statement = connection.prepareStatement(CommonParams.UPDATE_USER_ACCOUNT);
+			
+			statement.setString(1, userName);
+			statement.setString(2, userEmail);
+			statement.setInt(3, userId);
+			
+			int result = statement.executeUpdate();
+			statement.close();
+			
+			if(result != 0) {
+				connection.close();
+				return true;
+			} else {
+				connection.close();
+				return false;
+			}
+			
+		} catch (Exception error) {
+			error.printStackTrace();
+			return false;
+		}
+	}
+	
 	public Patient searchPatientByUserId (User user) {
 		
 		try {

@@ -59,4 +59,14 @@
     <servlet-name>ChangePasswordServlet</servlet-name>
     <url-pattern>/ChangePasswordServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UpdateUserAccountServlet</display-name>
+    <servlet-name>UpdateUserAccountServlet</servlet-name>
+    <servlet-class>servlets.UpdateUserAccountServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateUserAccountServlet</servlet-name>
+    <url-pattern>/UpdateUserAccountServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
