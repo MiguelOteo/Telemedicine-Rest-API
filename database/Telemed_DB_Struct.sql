@@ -24,3 +24,13 @@ CREATE TABLE patients (
 	doctorId INT DEFAULT NULL,
 	FOREIGN KEY (doctorId) REFERENCES doctors(doctorId) 
 );
+
+CREATE TABLE bitalinoRecords (
+
+	recordsId INT PRIMARY KEY AUTO_INCREMENT,
+	recordsStartDate DATE NOT NULL,
+	recordsFrequency INT NOT NULL,
+	recordsValues VARCHAR(1000) NOT NULL,
+	patientId INT NOT NULL,
+	FOREIGN KEY (patientId) REFERENCES patients(patientId)
+);
