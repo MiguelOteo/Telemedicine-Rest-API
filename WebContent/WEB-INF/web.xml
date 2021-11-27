@@ -7,7 +7,7 @@
 	<!-- UserLoginServlet configuration -->
 	<servlet>
 		<servlet-name>UserLoginServlet</servlet-name>
-		<servlet-class>servlets.UserLoginServlet</servlet-class>
+		<servlet-class>com.telemedicine.servlets.UserLoginServlet</servlet-class>
 	</servlet>
 	
 	<servlet-mapping>
@@ -18,7 +18,7 @@
 	<!-- UserRegistrationServlet configuration -->
 	<servlet>
 		<servlet-name>UserRegistrationServlet</servlet-name>
-		<servlet-class>servlets.UserRegistrationServlet</servlet-class>
+		<servlet-class>com.telemedicine.servlets.UserRegistrationServlet</servlet-class>
 	</servlet>
 	
 	<servlet-mapping>
@@ -29,7 +29,7 @@
 	<!-- UpdateUserAccountServlet configuration -->
 	<servlet>
 		<servlet-name>UpdateUserAccountServlet</servlet-name>
-		<servlet-class>servlets.UpdateUserAccountServlet</servlet-class>
+		<servlet-class>com.telemedicine.servlets.UpdateUserAccountServlet</servlet-class>
 	</servlet>
 	
 	<servlet-mapping>
@@ -40,7 +40,7 @@
 	<!-- ListPatientsServlet configuration -->
 	<servlet>
 		<servlet-name>ListPatientsServlet</servlet-name>
-		<servlet-class>servlets.ListPatientsServlet</servlet-class>
+		<servlet-class>com.telemedicine.servlets.ListPatientsServlet</servlet-class>
 	</servlet>
 	
 	<servlet-mapping>
@@ -51,7 +51,7 @@
 	<!-- ListDoctorPatientsServlet configuration -->
 	<servlet>
 		<servlet-name>ListDoctorPatientsServlet</servlet-name>
-		<servlet-class>servlets.ListDoctorPatientsServlet</servlet-class>
+		<servlet-class>com.telemedicine.servlets.ListDoctorPatientsServlet</servlet-class>
 	</servlet>
 	
 	<servlet-mapping>
@@ -62,7 +62,7 @@
 	<!-- GetPatientInformationServlet configuration -->
 	<servlet>
 		<servlet-name>GetPatientInformationServlet</servlet-name>
-		<servlet-class>servlets.GetPatientInformationServlet</servlet-class>
+		<servlet-class>com.telemedicine.servlets.GetPatientInformationServlet</servlet-class>
 	</servlet>
 	
 	<servlet-mapping>
@@ -73,7 +73,7 @@
 	<!-- DeletePatientAssignmentServlet configuration -->
 	<servlet>
 		<servlet-name>DeletePatientAssignmentServlet</servlet-name>
-		<servlet-class>servlets.DeletePatientAssignmentServlet</servlet-class>
+		<servlet-class>com.telemedicine.servlets.DeletePatientAssignmentServlet</servlet-class>
 	</servlet>
 	
 	<servlet-mapping>
@@ -84,7 +84,7 @@
 	<!-- ChangePasswordServlet configuration -->
 	<servlet>
 		<servlet-name>ChangePasswordServlet</servlet-name>
-		<servlet-class>servlets.ChangePasswordServlet</servlet-class>
+		<servlet-class>com.telemedicine.servlets.ChangePasswordServlet</servlet-class>
 	</servlet>
 	
 	<servlet-mapping>
@@ -95,7 +95,7 @@
 	<!-- AddPatientsToDoctorServlet configuration -->
 	<servlet>
 		<servlet-name>AddPatientsToDoctorServlet</servlet-name>
-		<servlet-class>servlets.AddPatientsToDoctorServlet</servlet-class>
+		<servlet-class>com.telemedicine.servlets.AddPatientsToDoctorServlet</servlet-class>
 	</servlet>
 	
 	<servlet-mapping>
@@ -106,7 +106,7 @@
 	<!-- AddPatientIdServlet configuration -->
 	<servlet>
 		<servlet-name>AddPatientIdServlet</servlet-name>
-		<servlet-class>servlets.AddPatientIdServlet</servlet-class>
+		<servlet-class>com.telemedicine.servlets.AddPatientIdServlet</servlet-class>
 	</servlet>
 	
 	<servlet-mapping>
@@ -117,7 +117,7 @@
 	<!-- AddDoctorIdentificationServlet configuration -->
 	<servlet>
 		<servlet-name>AddDoctorIdentificationServlet</servlet-name>
-		<servlet-class>servlets.AddDoctorIdentificationServlet</servlet-class>
+		<servlet-class>com.telemedicine.servlets.AddDoctorIdentificationServlet</servlet-class>
 	</servlet>
 	
 	<servlet-mapping>

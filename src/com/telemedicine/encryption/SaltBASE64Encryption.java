@@ -1,4 +1,4 @@
-package encryption;
+package com.telemedicine.encryption;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;

@@ -1,4 +1,4 @@
-package servlets;
+package com.telemedicine.servlets;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,10 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
-
-import MySQL.ControllerMySQL;
-import models.APIRequest;
-import models.APIResponse;
+import com.telemedicine.dao.ControllerMySQL;
+import com.telemedicine.models.APIRequest;
+import com.telemedicine.models.APIResponse;
 
 public class AddDoctorIdentificationServlet extends HttpServlet {
 	

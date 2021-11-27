@@ -1,4 +1,4 @@
-package models;
+package com.telemedicine.models;
 
 public class User {
 	

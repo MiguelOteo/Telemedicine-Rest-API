@@ -1,4 +1,4 @@
-package servlets;
+package com.telemedicine.servlets;
 
 import java.io.IOException;
 import java.util.List;
@@ -9,17 +9,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.telemedicine.dao.ControllerMySQL;
+import com.telemedicine.models.APIRequest;
+import com.telemedicine.models.APIResponse;
+import com.telemedicine.models.Patient;
 
-import MySQL.ControllerMySQL;
-import models.APIRequest;
-import models.APIResponse;
-import models.Patient;
-
-public class ListPatientsServlet extends HttpServlet {
-
+public class ListDoctorPatientsServlet extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
 
-	public ListPatientsServlet() {super();}
+    public ListDoctorPatientsServlet() {super();}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -34,7 +33,7 @@ public class ListPatientsServlet extends HttpServlet {
 		
 		if(controllerMySQL.searchDoctorByDoctorId(doctorId) != null) {
 			
-			List<Patient> patientList = controllerMySQL.listAllPatientsWithOutDoctor();
+			List<Patient> patientList = controllerMySQL.listAllDoctorPatients(doctorId);
 
 			if (patientList != null) {
 				responseModel.setNoDoctorPatients(patientList);
@@ -65,14 +64,3 @@ public class ListPatientsServlet extends HttpServlet {
 		response.getWriter().flush();
 	}
 }
-
-
-
-
-
-
-
-
-
-
-

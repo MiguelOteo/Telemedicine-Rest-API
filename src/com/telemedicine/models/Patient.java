@@ -1,4 +1,4 @@
-package models;
+package com.telemedicine.models;
 
 import java.sql.Date;
 import java.util.List;

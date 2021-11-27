@@ -1,4 +1,4 @@
-package servlets;
+package com.telemedicine.servlets;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,14 +7,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
-
-import MySQL.ControllerMySQL;
-import encryption.SaltBASE64Encryption;
-import models.APIRequest;
-import models.APIResponse;
-import models.Doctor;
-import models.Patient;
-import models.User;
+import com.telemedicine.dao.ControllerMySQL;
+import com.telemedicine.encryption.SaltBASE64Encryption;
+import com.telemedicine.models.APIRequest;
+import com.telemedicine.models.APIResponse;
+import com.telemedicine.models.Doctor;
+import com.telemedicine.models.Patient;
+import com.telemedicine.models.User;
 
 public class UserLoginServlet extends HttpServlet {
 	

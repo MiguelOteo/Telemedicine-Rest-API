@@ -1,4 +1,4 @@
-package MySQL;
+package com.telemedicine.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,10 +8,10 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
-import common.CommonParams;
-import models.Doctor;
-import models.Patient;
-import models.User;
+import com.telemedicine.models.Doctor;
+import com.telemedicine.models.Patient;
+import com.telemedicine.models.User;
+import com.telemedicine.params.CommonParams;
 
 public class ControllerMySQL {
 
