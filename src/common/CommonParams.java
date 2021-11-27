@@ -3,7 +3,7 @@ package common;
 public @interface CommonParams {
 
 	// REST API base URL
-	public final String BASE_API_URL = "http://192.168.1.44:8080/TelemedicineRestAPI/";
+	public final String BASE_API_URL = "http://localhost:8080/TelemedicineRestAPI";
 	
 	// MySQL connection parameter
 	public final String BASE_DB_URL = "jdbc:mysql://localhost:3306/telemedicineDB";

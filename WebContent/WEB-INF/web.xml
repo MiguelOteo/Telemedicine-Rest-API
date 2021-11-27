@@ -1,72 +1,143 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
-  <display-name>TelemedicineRestAPI</display-name>
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
-  </welcome-file-list>
-  <servlet>
-    <description></description>
-    <display-name>AddPatientsToDoctorServlet</display-name>
-    <servlet-name>AddPatientsToDoctorServlet</servlet-name>
-    <servlet-class>servlets.AddPatientsToDoctorServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>AddPatientsToDoctorServlet</servlet-name>
-    <url-pattern>/AddPatientsToDoctorServlet</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>AddDoctorIdentificationServlet</display-name>
-    <servlet-name>AddDoctorIdentificationServlet</servlet-name>
-    <servlet-class>servlets.AddDoctorIdentificationServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>AddDoctorIdentificationServlet</servlet-name>
-    <url-pattern>/AddDoctorIdentificationServlet</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>AddPatientIdServlet</display-name>
-    <servlet-name>AddPatientIdServlet</servlet-name>
-    <servlet-class>servlets.AddPatientIdServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>AddPatientIdServlet</servlet-name>
-    <url-pattern>/AddPatientIdServlet</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>GetPatientInformationServlet</display-name>
-    <servlet-name>GetPatientInformationServlet</servlet-name>
-    <servlet-class>servlets.GetPatientInformationServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>GetPatientInformationServlet</servlet-name>
-    <url-pattern>/GetPatientInformationServlet</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>ChangePasswordServlet</display-name>
-    <servlet-name>ChangePasswordServlet</servlet-name>
-    <servlet-class>servlets.ChangePasswordServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ChangePasswordServlet</servlet-name>
-    <url-pattern>/ChangePasswordServlet</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>UpdateUserAccountServlet</display-name>
-    <servlet-name>UpdateUserAccountServlet</servlet-name>
-    <servlet-class>servlets.UpdateUserAccountServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>UpdateUserAccountServlet</servlet-name>
-    <url-pattern>/UpdateUserAccountServlet</url-pattern>
-  </servlet-mapping>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://Java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5">
+
+	<!-- UserLoginServlet configuration -->
+	<servlet>
+		<servlet-name>UserLoginServlet</servlet-name>
+		<servlet-class>servlets.UserLoginServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>UserLoginServlet</servlet-name>
+		<url-pattern>/userLogin</url-pattern>
+	</servlet-mapping>
+
+	<!-- UserRegistrationServlet configuration -->
+	<servlet>
+		<servlet-name>UserRegistrationServlet</servlet-name>
+		<servlet-class>servlets.UserRegistrationServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>UserRegistrationServlet</servlet-name>
+		<url-pattern>/userRegistration</url-pattern>
+	</servlet-mapping>
+	
+	<!-- UpdateUserAccountServlet configuration -->
+	<servlet>
+		<servlet-name>UpdateUserAccountServlet</servlet-name>
+		<servlet-class>servlets.UpdateUserAccountServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>UpdateUserAccountServlet</servlet-name>
+		<url-pattern>/updateAccount</url-pattern>
+	</servlet-mapping>
+	
+	<!-- ListPatientsServlet configuration -->
+	<servlet>
+		<servlet-name>ListPatientsServlet</servlet-name>
+		<servlet-class>servlets.ListPatientsServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>ListPatientsServlet</servlet-name>
+		<url-pattern>/listPatients</url-pattern>
+	</servlet-mapping>
+
+	<!-- ListDoctorPatientsServlet configuration -->
+	<servlet>
+		<servlet-name>ListDoctorPatientsServlet</servlet-name>
+		<servlet-class>servlets.ListDoctorPatientsServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>ListDoctorPatientsServlet</servlet-name>
+		<url-pattern>/listDoctorPatients</url-pattern>
+	</servlet-mapping>
+
+	<!-- GetPatientInformationServlet configuration -->
+	<servlet>
+		<servlet-name>GetPatientInformationServlet</servlet-name>
+		<servlet-class>servlets.GetPatientInformationServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>GetPatientInformationServlet</servlet-name>
+		<url-pattern>/getPatientInformation</url-pattern>
+	</servlet-mapping>
+	
+	<!-- DeletePatientAssignmentServlet configuration -->
+	<servlet>
+		<servlet-name>DeletePatientAssignmentServlet</servlet-name>
+		<servlet-class>servlets.DeletePatientAssignmentServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>DeletePatientAssignmentServlet</servlet-name>
+		<url-pattern>/deletePatientAssignment</url-pattern>
+	</servlet-mapping>
+
+	<!-- ChangePasswordServlet configuration -->
+	<servlet>
+		<servlet-name>ChangePasswordServlet</servlet-name>
+		<servlet-class>servlets.ChangePasswordServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>ChangePasswordServlet</servlet-name>
+		<url-pattern>/changePassword</url-pattern>
+	</servlet-mapping>
+	
+	<!-- AddPatientsToDoctorServlet configuration -->
+	<servlet>
+		<servlet-name>AddPatientsToDoctorServlet</servlet-name>
+		<servlet-class>servlets.AddPatientsToDoctorServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>AddPatientsToDoctorServlet</servlet-name>
+		<url-pattern>/addPatientsToDoctor</url-pattern>
+	</servlet-mapping>
+
+	<!-- AddPatientIdServlet configuration -->
+	<servlet>
+		<servlet-name>AddPatientIdServlet</servlet-name>
+		<servlet-class>servlets.AddPatientIdServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>AddPatientIdServlet</servlet-name>
+		<url-pattern>/addPatientIdNumber</url-pattern>
+	</servlet-mapping>
+
+	<!-- AddDoctorIdentificationServlet configuration -->
+	<servlet>
+		<servlet-name>AddDoctorIdentificationServlet</servlet-name>
+		<servlet-class>servlets.AddDoctorIdentificationServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>AddDoctorIdentificationServlet</servlet-name>
+		<url-pattern>/addDoctorIdentification</url-pattern>
+	</servlet-mapping>
+
 </web-app>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
