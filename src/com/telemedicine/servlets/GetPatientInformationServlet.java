@@ -1,6 +1,8 @@
 package com.telemedicine.servlets;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +12,7 @@ import com.google.gson.Gson;
 import com.telemedicine.dao.ControllerMySQL;
 import com.telemedicine.models.APIRequest;
 import com.telemedicine.models.APIResponse;
+import com.telemedicine.models.BitalinoPackage;
 import com.telemedicine.models.Patient;
 
 public class GetPatientInformationServlet extends HttpServlet {
@@ -29,7 +32,10 @@ public class GetPatientInformationServlet extends HttpServlet {
 		if(requestAPI.getPatientId() != 0) {
 			
 			Patient patient = controllerMySQL.searchPatientByPatientId(requestAPI.getPatientId());
-			if(patient != null) {
+			
+			if(patient != null) {	
+				List<BitalinoPackage> listOfRecords = controllerMySQL.getPatientRecords(patient.getPatientId());
+				patient.setMeasuredPackages(listOfRecords);
 				sendPatient(patient, response);
 			} else {
 				sendMessage("Patient not found", true, response);
