@@ -28,7 +28,7 @@ CREATE TABLE patients (
 CREATE TABLE bitalinoRecords (
 
 	recordsId INT PRIMARY KEY AUTO_INCREMENT,
-	recordsStartDate DATE NOT NULL,
+	recordsStartDate DATETIME NOT NULL,
 	recordsFrequency INT NOT NULL,
 	recordsValues VARCHAR(1000) NOT NULL,
 	patientId INT NOT NULL,
