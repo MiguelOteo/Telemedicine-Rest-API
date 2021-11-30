@@ -26,7 +26,7 @@ public @interface CommonParams {
 	// List all form the database
 	public final String LIST_ALL_PATIENTS = "SELECT * FROM Patients WHERE doctorId IS NULL;";
 	public final String LIST_ALL_DOCTOR_PATIENTS = "SELECT * FROM Patients WHERE doctorId = ?;";
-	public final String LIST_PATIENT_MONTH_RECORDS = "SELECT * FROM bitalinoRecords WHERE patientId = ? AND recordsStartDate BETWEEN ? + '00:00:00' AND ? + '23:59:59'"
+	public final String LIST_PATIENT_DAY_RECORDS = "SELECT * FROM bitalinoRecords WHERE patientId = ? AND recordsStartDate BETWEEN ? AND ?"
 			+ " ORDER BY recordsStartDate;";
 	
 	// Update data base 

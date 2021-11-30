@@ -1,11 +1,11 @@
 package com.telemedicine.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
@@ -228,18 +228,20 @@ public class ControllerMySQL {
 	}
 
 	public List<BitalinoPackage> getPatientDayRecords(int patientId, LocalDate date) {
-
-		Date dateSQL = Date.valueOf(date);
 		
+		Timestamp startDate = Timestamp.valueOf(date.atStartOfDay());
+		Timestamp endDate = Timestamp.valueOf(date.atTime(23, 59, 59, 9));
+
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 
 			Connection connection = DriverManager.getConnection(CommonParams.BASE_DB_URL, CommonParams.DB_HOST,
 					CommonParams.DB_PASSWORD);
-			PreparedStatement statement = connection.prepareStatement(CommonParams.LIST_PATIENT_MONTH_RECORDS);
+			PreparedStatement statement = connection.prepareStatement(CommonParams.LIST_PATIENT_DAY_RECORDS);
 
 			statement.setInt(1, patientId);
-			statement.setDate(1, dateSQL);
+			statement.setTimestamp(2, startDate);
+			statement.setTimestamp(3, endDate);
 			ResultSet resultSet = statement.executeQuery();
 
 			List<BitalinoPackage> recordsHistory = new LinkedList<BitalinoPackage>();

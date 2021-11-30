@@ -34,10 +34,14 @@ public class GetPatientDayRecordsServlet extends HttpServlet {
 			List<BitalinoPackage> dayRecords = controllerMySQL.getPatientDayRecords(requestAPI.getPatientId(), requestAPI.getDate());
 			if(dayRecords != null) {
 				
-				responseModel.setDayRecords(dayRecords);
-				sendData(responseModel, response);	
+				if(dayRecords.size() != 0) {
+					responseModel.setDayRecords(dayRecords);
+					sendData(responseModel, response);	
+				} else {
+					sendMessage("No data recorded that day", true, response);
+				}
 			} else {
-				sendMessage("No data recorded that day", true, response);
+				sendMessage("Error searching the data", true, response);
 			}	
 		} else {
 			sendMessage("Parameters Missing", true, response);
