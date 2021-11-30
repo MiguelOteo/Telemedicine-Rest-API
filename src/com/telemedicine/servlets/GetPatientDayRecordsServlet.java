@@ -11,11 +11,11 @@ import com.telemedicine.dao.ControllerMySQL;
 import com.telemedicine.models.APIRequest;
 import com.telemedicine.models.APIResponse;
 
-public class GetPatientMonthRecordsServlet extends HttpServlet {
+public class GetPatientDayRecordsServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 
-    public GetPatientMonthRecordsServlet() {super();}
+    public GetPatientDayRecordsServlet() {super();}
     
     @SuppressWarnings("unused")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

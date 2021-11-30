@@ -116,12 +116,12 @@
 	</servlet-mapping>
 	
 	<servlet>
-		<servlet-name>GetPatientMonthRecordsServlet</servlet-name>
-		<servlet-class>com.telemedicine.servlets.GetPatientMonthRecordsServlet
+		<servlet-name>GetPatientDayRecordsServlet</servlet-name>
+		<servlet-class>com.telemedicine.servlets.GetPatientDayRecordsServlet
 		</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>GetPatientMonthRecordsServlet</servlet-name>
-		<url-pattern>/GetPatientMonthRecords</url-pattern>
+		<servlet-name>GetPatientDayRecordsServlet</servlet-name>
+		<url-pattern>/GetPatientDayRecords</url-pattern>
 	</servlet-mapping>
 </web-app>

@@ -227,7 +227,7 @@ public class ControllerMySQL {
 		}
 	}
 
-	public List<BitalinoPackage> getPatientRecords(int patientId, LocalDate date) {
+	public List<BitalinoPackage> getPatientDayRecords(int patientId, LocalDate date) {
 
 		Date dateSQL = Date.valueOf(date);
 		
