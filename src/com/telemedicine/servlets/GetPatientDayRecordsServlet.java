@@ -1,6 +1,8 @@
 package com.telemedicine.servlets;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +12,7 @@ import com.google.gson.Gson;
 import com.telemedicine.dao.ControllerMySQL;
 import com.telemedicine.models.APIRequest;
 import com.telemedicine.models.APIResponse;
+import com.telemedicine.models.BitalinoPackage;
 
 public class GetPatientDayRecordsServlet extends HttpServlet {
 	
@@ -17,9 +20,7 @@ public class GetPatientDayRecordsServlet extends HttpServlet {
 
     public GetPatientDayRecordsServlet() {super();}
     
-    @SuppressWarnings("unused")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		
 		APIResponse responseModel = new APIResponse();
 		ControllerMySQL controllerMySQL = new ControllerMySQL();
@@ -30,8 +31,14 @@ public class GetPatientDayRecordsServlet extends HttpServlet {
 		
 		if (requestAPI.getPatientId() != 0 && requestAPI.getDate() != null) {
 			
-			
-			
+			List<BitalinoPackage> dayRecords = controllerMySQL.getPatientDayRecords(requestAPI.getPatientId(), requestAPI.getDate());
+			if(dayRecords != null) {
+				
+				responseModel.setDayRecords(dayRecords);
+				sendData(responseModel, response);	
+			} else {
+				sendMessage("No data recorded that day", true, response);
+			}	
 		} else {
 			sendMessage("Parameters Missing", true, response);
 		}
@@ -42,6 +49,13 @@ public class GetPatientDayRecordsServlet extends HttpServlet {
 		APIResponse responseModel = new APIResponse();
 		responseModel.setError(error);
 		responseModel.setAPImessage(message);
+		response.getWriter().print(new Gson().toJson(responseModel));
+		response.getWriter().flush();
+	}
+	
+	private void sendData(APIResponse responseModel, HttpServletResponse response) throws  ServletException, IOException {
+		
+		responseModel.setError(false);
 		response.getWriter().print(new Gson().toJson(responseModel));
 		response.getWriter().flush();
 	}
