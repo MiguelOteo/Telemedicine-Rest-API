@@ -399,6 +399,39 @@ public class ControllerMySQL {
 		}
 	}
 
+	public boolean addPacketsToPatient(Date recordsStartDate, int recordsFrequency, String recordsEMGValues, String recordsECGValues, int patientId) {
+
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+
+			Connection connection = DriverManager.getConnection(CommonParams.BASE_DB_URL, CommonParams.DB_HOST,
+					CommonParams.DB_PASSWORD);
+			PreparedStatement statement = connection.prepareStatement(CommonParams.INSERT_BITALINO_PACKAGE);
+
+
+			statement.setDate(1, recordsStartDate);
+			statement.setInt(2, recordsFrequency);
+			statement.setString(3, recordsEMGValues);
+			statement.setString(4, recordsECGValues);
+			statement.setInt(5, patientId);
+
+			int result = statement.executeUpdate();
+			statement.close();
+
+			if (result != 0) {
+				connection.close();
+				return true;
+			} else {
+				connection.close();
+				return false;
+			}
+
+		} catch (Exception error) {
+			error.printStackTrace();
+			return false;
+		}
+	}
+
 	public boolean deletePatientAssignment(int patientId) {
 
 		try {
