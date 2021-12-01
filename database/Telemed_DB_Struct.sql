@@ -30,7 +30,8 @@ CREATE TABLE bitalinoRecords (
 	recordsId INT PRIMARY KEY AUTO_INCREMENT,
 	recordsStartDate DATETIME NOT NULL,
 	recordsFrequency INT NOT NULL,
-	recordsValues VARCHAR(1000) NOT NULL,
+	recordsEMGValues VARCHAR(1000) NOT NULL,
+	recordsECGValues VARCHAR(1000) NOT NULL,
 	patientId INT NOT NULL,
 	FOREIGN KEY (patientId) REFERENCES patients(patientId)
 );
