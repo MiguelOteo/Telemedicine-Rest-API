@@ -1,6 +1,6 @@
 package com.telemedicine.models;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class BitalinoPackage {
 
@@ -8,26 +8,29 @@ public class BitalinoPackage {
 	
 	private int patientId;
 	private int recordFreq;
-	private Date recordsDate;
-	private String recordsData;
+	private Timestamp recordsDate;
+	private String emgData;
+	private String ecgData;
 
-	public BitalinoPackage(int patientId, int recordFreq, Date now, String recordsData) {
-		
+
+	public BitalinoPackage(int patientId, int recordFreq, Timestamp startingDate, String emgData, String ecgData) {
+
 		this.patientId = patientId;
 		this.recordFreq = recordFreq;
-		this.recordsDate = now;
-		this.recordsData = recordsData;
-		
+		this.recordsDate = startingDate;
+		this.emgData = emgData;
+		this.ecgData = ecgData;
 	}
 	
-	public BitalinoPackage(int bitalinoPackageId, int patientId, int recordFreq, Date startingDate, String recordsData) {
+	public BitalinoPackage(int bitalinoPackageId, int patientId, int recordFreq, Timestamp startingDate, String emgData, String ecgData) {
 		
 		this.bitalinoPackageId = bitalinoPackageId;
 		
 		this.patientId = patientId;
 		this.recordFreq = recordFreq;
 		this.recordsDate = startingDate;
-		this.recordsData = recordsData;
+		this.emgData = emgData;
+		this.ecgData = ecgData;
 	}
 
 	public int getBitalinoPackageId() {return bitalinoPackageId;}
@@ -42,12 +45,15 @@ public class BitalinoPackage {
 
 	public void setRecordFreq(int recordFreq) {this.recordFreq = recordFreq;}
 
-	public Date getRecordsDate() {return recordsDate;}
+	public Timestamp getRecordsDate() {return recordsDate;}
 
-	public void setRecordsDate(Date recordsDate) {this.recordsDate = recordsDate;}
+	public void setRecordsDate(Timestamp recordsDate) {this.recordsDate = recordsDate;}
 
-	public String getRecordsData() {return recordsData;}
+	public String getemgData() {return emgData;}
 
-	public void setRecordsData(String recordsData) {this.recordsData = recordsData;}
+	public void setemgData(String emgData) {this.emgData = emgData;}
+	
+	public String getecgData() {return ecgData;}
+
+	public void setecgData(String ecgData) {this.ecgData = ecgData;}
 }
-

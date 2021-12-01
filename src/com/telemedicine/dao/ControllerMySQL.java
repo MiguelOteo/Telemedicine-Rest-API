@@ -229,8 +229,8 @@ public class ControllerMySQL {
 
 	public List<BitalinoPackage> getPatientDayRecords(int patientId, Date date) {
 		
-		Timestamp startDate = Timestamp.valueOf(date.toString() + " 00:00:00.0");
-		Timestamp endDate = Timestamp.valueOf(date.toString() + " 23:59:59.9");
+		Timestamp startDate = Timestamp.valueOf(date.toString() + " 00:00:00.000");
+		Timestamp endDate = Timestamp.valueOf(date.toString() + " 23:59:59.999");
 		
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -248,7 +248,7 @@ public class ControllerMySQL {
 
 			while (resultSet.next()) {
 				recordsHistory.add(new BitalinoPackage(resultSet.getInt("recordsId"), resultSet.getInt("patientId"),
-						resultSet.getInt("recordsFrequency"), resultSet.getDate("recordsStartDate"), resultSet.getString("recordsValues")));
+						resultSet.getInt("recordsFrequency"), resultSet.getTimestamp("recordsStartDate"), resultSet.getString("recordsEMGValues"), resultSet.getString("recordsECGValues")));
 			} 
 
 			connection.close();
