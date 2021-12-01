@@ -14,6 +14,8 @@ public @interface CommonParams {
 	public final String INSERT_NEW_USER = "INSERT INTO Users (userName, userEmail, userEncryptedPassword, userSalt) VALUES (?, ?, ?, ?);";
 	public final String INSERT_NEW_DOCTOR = "INSERT INTO Doctors (userId) VALUES (?);";
 	public final String INSERT_NEW_PATIENT = "INSERT INTO Patients (userId) VALUES (?);";
+	public final String INSERT_BITALINO_PACKAGE = "INSERT INTO bitalinoRecords (recordsStartDate, recordsFrequency, recordsEMGValues, recordsECGValues, patientId) "
+			+ "VALUES (?,?,?,?,?);";
 	
 	// Search data from the data base
 	public final String SEARCH_USER_BY_EMAIL = "SELECT * FROM Users WHERE userEmail = ?;";
