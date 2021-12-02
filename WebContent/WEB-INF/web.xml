@@ -124,4 +124,14 @@
 		<servlet-name>GetPatientDayRecordsServlet</servlet-name>
 		<url-pattern>/GetPatientDayRecords</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>AddPacketsToPatientServlet</servlet-name>
+		<servlet-class>com.telemedicine.servlets.AddPacketsToPatientServlet
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AddPacketsToPatientServlet</servlet-name>
+		<url-pattern>/addPacketsToPatient</url-pattern>
+	</servlet-mapping>
 </web-app>

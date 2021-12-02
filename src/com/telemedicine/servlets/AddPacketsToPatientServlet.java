@@ -32,9 +32,9 @@ public class AddPacketsToPatientServlet extends HttpServlet {
 
 		APIRequest requestAPI = new Gson().fromJson(request.getParameter("APIRequest"), APIRequest.class);
 
-		int patientId = requestAPI.getPatientId();
 		BitalinoPackage bitalinopackage = requestAPI.getBitalinopackage();
-
+		int patientId = bitalinopackage.getPatientId();
+		
 		if (controllerMySQL.searchPatientByPatientId(patientId) != null) {
 
 				Timestamp packageDate = bitalinopackage.getRecordsDate();
@@ -49,18 +49,13 @@ public class AddPacketsToPatientServlet extends HttpServlet {
 					
 				}
 			
+				else {
 
-			List<Patient> patientList = controllerMySQL.listAllPatientsWithOutDoctor();
-
-			if (patientList != null) {
-				responseModel.setNoDoctorPatients(patientList);
-				sendPatients(responseModel, response);
-			} else {
-				sendMessage("No patients found", false, response);
-			}
+				sendMessage("Package succesfully sent", false, response);
+				}
 
 		} else {
-			sendMessage("Error verifiying your account", true, response);
+			sendMessage("Client not found", true, response);
 		}
 	}
 
