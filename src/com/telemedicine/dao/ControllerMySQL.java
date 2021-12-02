@@ -399,7 +399,7 @@ public class ControllerMySQL {
 		}
 	}
 
-	public boolean addPacketsToPatient(Date recordsStartDate, int recordsFrequency, String recordsEMGValues, String recordsECGValues, int patientId) {
+	public boolean addPacketsToPatient(Timestamp recordsStartDate, int recordsFrequency, String recordsEMGValues, String recordsECGValues, int patientId) {
 
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -409,7 +409,7 @@ public class ControllerMySQL {
 			PreparedStatement statement = connection.prepareStatement(CommonParams.INSERT_BITALINO_PACKAGE);
 
 
-			statement.setDate(1, recordsStartDate);
+			statement.setTimestamp(1, recordsStartDate);
 			statement.setInt(2, recordsFrequency);
 			statement.setString(3, recordsEMGValues);
 			statement.setString(4, recordsECGValues);
