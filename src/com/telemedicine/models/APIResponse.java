@@ -16,6 +16,7 @@ public class APIResponse {
 	private String encryptedPassword;
 	private String userName;
 	private String userEmail;
+	private BitalinoPackage bitalinopackage;
 	
 	// Return the API message (Error message if error boolean is true)
 	private String APImessage;
@@ -24,11 +25,12 @@ public class APIResponse {
 	public APIResponse() {}
 	
 	// Constructor
-	public APIResponse(int APIresponseId, boolean error, Doctor doctor, Patient patient, String errorMsg, List<Patient> noDoctorPatients) {
+	public APIResponse(int APIresponseId, boolean error, Doctor doctor, Patient patient, BitalinoPackage bitalinopackage, String errorMsg, List<Patient> noDoctorPatients) {
 		this.error = error;
 		this.APIresponseId = APIresponseId;
 		this.doctor = doctor;
 		this.patient = patient;
+		this.bitalinopackage= bitalinopackage;
 		this.APImessage = errorMsg;
 		this.noDoctorPatients = noDoctorPatients;
 	}
@@ -73,4 +75,8 @@ public class APIResponse {
 	public List<BitalinoPackage> getDayRecords() {return dayRecords;}
 
 	public void setDayRecords(List<BitalinoPackage> dayRecords) {this.dayRecords = dayRecords;}	
+	
+	public BitalinoPackage getBitalinopackage() {return bitalinopackage;}
+
+	public void setBitalinopackage(BitalinoPackage bitalinopackage) {this.bitalinopackage = bitalinopackage;}		
 }

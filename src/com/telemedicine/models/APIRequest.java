@@ -18,6 +18,7 @@ public class APIRequest {
 	private Date date;
 	private String doctorIdentification;
 	private String patientIdNumber;
+	private BitalinoPackage bitalinopackage;
 	
 	private List<Integer> selectedPatients;
 	
@@ -73,5 +74,9 @@ public class APIRequest {
 
 	public Date getDate() {return date;}
 
-	public void setDate(Date date) {this.date = date;}		
+	public void setDate(Date date) {this.date = date;}
+
+	public BitalinoPackage getBitalinopackage() {return bitalinopackage;}
+
+	public void setBitalinopackage(BitalinoPackage bitalinopackage) {this.bitalinopackage = bitalinopackage;}		
 }
