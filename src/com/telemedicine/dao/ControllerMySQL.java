@@ -514,10 +514,38 @@ public class ControllerMySQL {
 			error.printStackTrace();
 			return false;
 		}
+	}
+	
+	public boolean updatePatientData (int patientId, float weight, float height) {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
 
+			Connection connection = DriverManager.getConnection(CommonParams.BASE_DB_URL, CommonParams.DB_HOST,
+					CommonParams.DB_PASSWORD);
+			PreparedStatement statement = connection.prepareStatement(CommonParams.UPDATE_PATIENT_ID_NUMBER);
+
+			statement.setFloat(1, weight);
+			statement.setFloat(2, height);
+			statement.setInt(3, patientId);
+
+			int result = statement.executeUpdate();
+			statement.close();
+
+			if (result != 0) {
+				connection.close();
+				return true;
+			} else {
+				connection.close();
+				return false;
+			}
+
+		} catch (Exception error) {
+			error.printStackTrace();
+			return false;
+		}
 	}
 
-	public boolean addDoctorIdentification(String doctorIdentification, int doctorId) {
+	public boolean addDoctorIdentification (String doctorIdentification, int doctorId) {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 

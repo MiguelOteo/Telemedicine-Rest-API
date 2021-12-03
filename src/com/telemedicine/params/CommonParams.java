@@ -38,4 +38,5 @@ public @interface CommonParams {
 	public final String UPDATE_DOCTOR_DOCTOR_IDENTIFICATION = "UPDATE Doctors SET doctorIdentification = ? WHERE doctorId = ?;";
 	public final String CHANGE_USER_PASSWORD = "UPDATE Users SET userEncryptedPassword = ? WHERE userId = ?;";
 	public final String UPDATE_USER_ACCOUNT = "UPDATE Users SET userName = ? , userEmail = ? WHERE userId = ?";
+	public final String UPDATE_PATIENT_DATA = "UPDATE Patients SET patientWeight = ?, patientHeight = ? WHERE patientId = ?;";
 }

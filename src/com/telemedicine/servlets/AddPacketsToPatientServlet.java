@@ -1,9 +1,7 @@
 package com.telemedicine.servlets;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.sql.Timestamp;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -15,7 +13,6 @@ import com.telemedicine.dao.ControllerMySQL;
 import com.telemedicine.models.APIRequest;
 import com.telemedicine.models.APIResponse;
 import com.telemedicine.models.BitalinoPackage;
-import com.telemedicine.models.Patient;
 
 public class AddPacketsToPatientServlet extends HttpServlet {
 	
@@ -25,7 +22,6 @@ public class AddPacketsToPatientServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		APIResponse responseModel = new APIResponse();
 		ControllerMySQL controllerMySQL = new ControllerMySQL();
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
@@ -44,16 +40,12 @@ public class AddPacketsToPatientServlet extends HttpServlet {
 				
 				boolean insertion = controllerMySQL.addPacketsToPatient(packageDate, packageFrequency, packageEMG, packageECG, patientId);
 
-				if (!insertion) {
+				if (insertion) {
+					sendMessage("Package succesfully sent", false, response);
+				} else {
 					sendMessage("Error adding the BITalino Data Packets", true, response);
-					
 				}
-			
-				else {
-
-				sendMessage("Package succesfully sent", false, response);
-				}
-
+				
 		} else {
 			sendMessage("Client not found", true, response);
 		}
@@ -67,12 +59,4 @@ public class AddPacketsToPatientServlet extends HttpServlet {
 		response.getWriter().print(new Gson().toJson(responseModel));
 		response.getWriter().flush();
 	}
-
-	private void sendPatients(APIResponse responseModel, HttpServletResponse response) throws ServletException, IOException {
-
-		responseModel.setError(false);
-		response.getWriter().print(new Gson().toJson(responseModel));
-		response.getWriter().flush();
-	}
-
 }
