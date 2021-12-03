@@ -1,7 +1,6 @@
 package com.telemedicine.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -227,10 +226,16 @@ public class ControllerMySQL {
 		}
 	}
 
-	public List<BitalinoPackage> getPatientDayRecords(int patientId, Date date) {
+	public List<BitalinoPackage> getPatientDayRecords(int patientId, Timestamp date) {
 		
-		Timestamp startDate = Timestamp.valueOf(date.toString() + " 00:00:00.000");
-		Timestamp endDate = Timestamp.valueOf(date.toString() + " 23:59:59.999");
+		Timestamp startDate = Timestamp.valueOf(date.toString());
+		Timestamp endDate = Timestamp.valueOf(date.toString());;
+		
+		// --> ((19*60) + 59)*1000 + 999 milliseconds = 19M 59S 999MS
+		endDate.setTime(endDate.getTime() + ((19*60) + 59)*1000 + 999);
+		
+		System.out.println(startDate);
+		System.out.println(endDate);
 		
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
