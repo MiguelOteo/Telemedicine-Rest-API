@@ -183,7 +183,7 @@ public class ControllerMySQL {
 
 			if (resultSet.next()) {
 				Patient patient = new Patient(resultSet.getInt("patientId"), resultSet.getString("patientIdNumber"),
-						user, 0);
+						user);
 				connection.close();
 				return patient;
 			} else {
@@ -212,7 +212,7 @@ public class ControllerMySQL {
 			if (resultSet.next()) {
 				User user = searchUserById(resultSet.getInt("userId"));
 				Patient patient = new Patient(resultSet.getInt("patientId"), resultSet.getString("patientIdNumber"),
-						user, patientId);
+						user);
 				connection.close();
 				return patient;
 			} else {
@@ -336,7 +336,7 @@ public class ControllerMySQL {
 			while (resultSet.next()) {
 				User user = searchUserById(resultSet.getInt("userId"));
 				Patient patient = new Patient(resultSet.getInt("patientId"), resultSet.getString("patientIdNumber"),
-						user, 0);
+						user);
 				patientsList.add(patient);
 			}
 
@@ -365,7 +365,7 @@ public class ControllerMySQL {
 			while (resultSet.next()) {
 				User user = searchUserById(resultSet.getInt("userId"));
 				Patient patient = new Patient(resultSet.getInt("patientId"), resultSet.getString("patientIdNumber"),
-						user, 0);
+						user);
 				patientsList.add(patient);
 			}
 

@@ -78,5 +78,10 @@ public class APIResponse {
 	
 	public BitalinoPackage getBitalinopackage() {return bitalinopackage;}
 
-	public void setBitalinopackage(BitalinoPackage bitalinopackage) {this.bitalinopackage = bitalinopackage;}		
+	public void setBitalinopackage(BitalinoPackage bitalinopackage) {this.bitalinopackage = bitalinopackage;}
+
+	public void setUserWeight(String userWeight) {
+		// TODO Auto-generated method stub
+		
+	}		
 }

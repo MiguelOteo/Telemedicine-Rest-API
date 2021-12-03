@@ -12,6 +12,7 @@ public class Patient extends User {
 	
 	private float patientWeight;
 	
+	
 	//List of the packages with BITalino measures
 	private List<BitalinoPackage> measuredPackages;
 	
@@ -26,16 +27,14 @@ public class Patient extends User {
 		this.patientId = patientId;
 		this.patientIdNumber = patientIdNumber;
 		this.measuredPackages = new LinkedList<BitalinoPackage>();
-		this.setPatientWeight(patientWeight);
 	}
 	
-	public Patient(int patientId, String patientIdNumber, User user, float patientWeight) {
+	public Patient(int patientId, String patientIdNumber, User user) {
 		super(user.getUserId(), user.getName(), user.getEmail(), user.getEncryptedPassword(), user.getUserSalt());
 		
 		this.patientId = patientId;
 		this.patientIdNumber = patientIdNumber;
 		this.measuredPackages = new LinkedList<BitalinoPackage>();
-		this.setPatientWeight(patientWeight);
 	}
 	
 	public void addNewPackage(BitalinoPackage recordPackage) {
