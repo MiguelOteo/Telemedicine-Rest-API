@@ -519,7 +519,7 @@ public class ControllerMySQL {
 
 			Connection connection = DriverManager.getConnection(CommonParams.BASE_DB_URL, CommonParams.DB_HOST,
 					CommonParams.DB_PASSWORD);
-			PreparedStatement statement = connection.prepareStatement(CommonParams.UPDATE_PATIENT_ID_NUMBER);
+			PreparedStatement statement = connection.prepareStatement(CommonParams.UPDATE_PATIENT_DATA);
 
 			statement.setFloat(1, weight);
 			statement.setFloat(2, height);

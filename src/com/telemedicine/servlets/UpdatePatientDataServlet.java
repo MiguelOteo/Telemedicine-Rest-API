@@ -39,56 +39,35 @@ public class UpdatePatientDataServlet extends HttpServlet {
 			} else {
 			
 				Patient patient = controllerMySQL.searchPatientByPatientId(requestAPI.getPatientId());
-				if(patient != null) {
-					
-					if(requestAPI.getPatientWeight() == 0.0f) {
-						
-						//boolean result = controllerMySQL.updateAccount(requestAPI.getUserName(), user.getEmail(), requestAPI.getUserId());
-						//boolean result = controllerMySQL.updatePatientData(patientId, patientWeight, patientHeight);
-						boolean result = controllerMySQL.updatePatientData(patient.getPatientId(), patient.getPatientWeight(), requestAPI.getPatientHeight());
-						if(result) {
-							patient.setPatientHeight(requestAPI.getPatientHeight());
-							sendPatientAccountData(patient, "Height updated successfully", response);
+				if (patient != null) {
+
+					if (requestAPI.getPatientWeight() != 0.0f) {
+
+						boolean result = controllerMySQL.updatePatientData(patient.getPatientId(),
+								requestAPI.getPatientWeight(), patient.getPatientHeight());
+						if (result) {
+							sendMessage( "Weight updated successfully", false, response);
 						} else {
 							sendMessage("Error updating your weight", true, response);
 						}
-					} else {
-						
-					Patient patientExists = controllerMySQL.searchPatientByPatientId(requestAPI.getPatientId());
-						if(patientExists != null) {
-							
-							sendMessage("Height already in used", true, response);
-						} else {
-							boolean result = controllerMySQL.updatePatientData(patient.getPatientId(), requestAPI.getPatientWeight(), patient.getPatientHeight());							if(result) {
-							if(result) {
-								patient.setPatientWeight(requestAPI.getPatientWeight());
-								sendPatientAccountData(patient, "Weight updated successfully", response);	
+					}else {
+						boolean result = controllerMySQL.updatePatientData(patient.getPatientId(),
+								patient.getPatientWeight(), requestAPI.getPatientHeight());
+						if (result) {
+							if (result) {
+								sendMessage( "Height updated successfully", false, response);
 							} else {
-								sendMessage("Error updating your weight", true, response);
+								sendMessage("Error updating your height", true, response);
 							}
 						}
-					}	
+					}
 				} 
 				}
-			}
+			
 		} else {
 			sendMessage("Patient ID Missing", true, response);
 		}
 	}
-
-	private void sendPatientAccountData(Patient patient, String message, HttpServletResponse response)
-			throws ServletException, IOException {
-
-		APIResponse responseModel = new APIResponse();
-		responseModel.setPatient(patient);
-
-		responseModel.setError(false);
-		responseModel.setAPImessage(message);
-		response.getWriter().print(new Gson().toJson(responseModel));
-		response.getWriter().flush();
-		
-	}
-
 	
 	
 	private void sendMessage(String message, boolean error, HttpServletResponse response) throws ServletException, IOException {
