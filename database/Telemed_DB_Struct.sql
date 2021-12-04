@@ -30,7 +30,7 @@ CREATE TABLE patients (
 CREATE TABLE bitalinoRecords (
 
 	recordsId INT PRIMARY KEY AUTO_INCREMENT,
-	recordsStartDate DATETIME NOT NULL,
+	recordsStartDate DATETIME(3) NOT NULL,
 	recordsFrequency INT NOT NULL,
 	recordsEMGValues VARCHAR(1000) NOT NULL,
 	recordsECGValues VARCHAR(1000) NOT NULL,

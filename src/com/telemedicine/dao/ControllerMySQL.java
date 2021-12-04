@@ -233,10 +233,7 @@ public class ControllerMySQL {
 		
 		// --> ((19*60) + 59)*1000 + 999 milliseconds = 19M 59S 999MS
 		endDate.setTime(endDate.getTime() + ((19*60) + 59)*1000 + 999);
-		
-		System.out.println(startDate);
-		System.out.println(endDate);
-		
+	
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 
