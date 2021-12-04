@@ -183,7 +183,7 @@ public class ControllerMySQL {
 
 			if (resultSet.next()) {
 				Patient patient = new Patient(resultSet.getInt("patientId"), resultSet.getString("patientIdNumber"),
-						user);
+						resultSet.getFloat("patientHeight"), resultSet.getFloat("patientWeight"), user);
 				connection.close();
 				return patient;
 			} else {
@@ -212,7 +212,7 @@ public class ControllerMySQL {
 			if (resultSet.next()) {
 				User user = searchUserById(resultSet.getInt("userId"));
 				Patient patient = new Patient(resultSet.getInt("patientId"), resultSet.getString("patientIdNumber"),
-						user);
+						resultSet.getFloat("patientHeight"), resultSet.getFloat("patientWeight"), user);
 				connection.close();
 				return patient;
 			} else {
@@ -227,13 +227,14 @@ public class ControllerMySQL {
 	}
 
 	public List<BitalinoPackage> getPatientDayRecords(int patientId, Timestamp date) {
-		
+
 		Timestamp startDate = Timestamp.valueOf(date.toString());
-		Timestamp endDate = Timestamp.valueOf(date.toString());;
-		
+		Timestamp endDate = Timestamp.valueOf(date.toString());
+		;
+
 		// --> ((19*60) + 59)*1000 + 999 milliseconds = 19M 59S 999MS
-		endDate.setTime(endDate.getTime() + ((19*60) + 59)*1000 + 999);
-	
+		endDate.setTime(endDate.getTime() + ((19 * 60) + 59) * 1000 + 999);
+
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 
@@ -250,8 +251,9 @@ public class ControllerMySQL {
 
 			while (resultSet.next()) {
 				recordsHistory.add(new BitalinoPackage(resultSet.getInt("recordsId"), resultSet.getInt("patientId"),
-						resultSet.getInt("recordsFrequency"), resultSet.getTimestamp("recordsStartDate"), resultSet.getString("recordsEMGValues"), resultSet.getString("recordsECGValues")));
-			} 
+						resultSet.getInt("recordsFrequency"), resultSet.getTimestamp("recordsStartDate"),
+						resultSet.getString("recordsEMGValues"), resultSet.getString("recordsECGValues")));
+			}
 
 			connection.close();
 			return recordsHistory;
@@ -333,7 +335,7 @@ public class ControllerMySQL {
 			while (resultSet.next()) {
 				User user = searchUserById(resultSet.getInt("userId"));
 				Patient patient = new Patient(resultSet.getInt("patientId"), resultSet.getString("patientIdNumber"),
-						user);
+						resultSet.getFloat("patientHeight"), resultSet.getFloat("patientWeight"), user);
 				patientsList.add(patient);
 			}
 
@@ -362,7 +364,7 @@ public class ControllerMySQL {
 			while (resultSet.next()) {
 				User user = searchUserById(resultSet.getInt("userId"));
 				Patient patient = new Patient(resultSet.getInt("patientId"), resultSet.getString("patientIdNumber"),
-						user);
+						resultSet.getFloat("patientHeight"), resultSet.getFloat("patientWeight"), user);
 				patientsList.add(patient);
 			}
 
@@ -401,7 +403,8 @@ public class ControllerMySQL {
 		}
 	}
 
-	public boolean addPacketsToPatient(Timestamp recordsStartDate, int recordsFrequency, String recordsEMGValues, String recordsECGValues, int patientId) {
+	public boolean addPacketsToPatient(Timestamp recordsStartDate, int recordsFrequency, String recordsEMGValues,
+			String recordsECGValues, int patientId) {
 
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -409,7 +412,6 @@ public class ControllerMySQL {
 			Connection connection = DriverManager.getConnection(CommonParams.BASE_DB_URL, CommonParams.DB_HOST,
 					CommonParams.DB_PASSWORD);
 			PreparedStatement statement = connection.prepareStatement(CommonParams.INSERT_BITALINO_PACKAGE);
-
 
 			statement.setTimestamp(1, recordsStartDate);
 			statement.setInt(2, recordsFrequency);
@@ -512,8 +514,8 @@ public class ControllerMySQL {
 			return false;
 		}
 	}
-	
-	public boolean updatePatientData (int patientId, float weight, float height) {
+
+	public boolean updatePatientData(int patientId, float weight, float height) {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 
@@ -542,7 +544,7 @@ public class ControllerMySQL {
 		}
 	}
 
-	public boolean addDoctorIdentification (String doctorIdentification, int doctorId) {
+	public boolean addDoctorIdentification(String doctorIdentification, int doctorId) {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 
