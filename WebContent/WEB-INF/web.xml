@@ -106,7 +106,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>GetPatientDayRecordsServlet</servlet-name>
-    <url-pattern>/GetPatientDayRecords</url-pattern>
+    <url-pattern>/getPatientDayRecords</url-pattern>
   </servlet-mapping>
   
   <servlet>
@@ -124,7 +124,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>UpdatePatientDataServlet</servlet-name>
-    <url-pattern>/UpdatePatientData</url-pattern>
+    <url-pattern>/updatePatientData</url-pattern>
   </servlet-mapping>
   
 </web-app>
