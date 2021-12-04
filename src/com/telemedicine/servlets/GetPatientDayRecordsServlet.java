@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.telemedicine.dao.ControllerMySQL;
 import com.telemedicine.models.APIRequest;
 import com.telemedicine.models.APIResponse;
@@ -60,7 +61,8 @@ public class GetPatientDayRecordsServlet extends HttpServlet {
 	private void sendData(APIResponse responseModel, HttpServletResponse response) throws  ServletException, IOException {
 		
 		responseModel.setError(false);
-		response.getWriter().print(new Gson().toJson(responseModel));
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SS'Z'").create();
+		response.getWriter().print(gson.toJson(responseModel));
 		response.getWriter().flush();
 	}
 }
