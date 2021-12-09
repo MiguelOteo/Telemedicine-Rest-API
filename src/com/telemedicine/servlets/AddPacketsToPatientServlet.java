@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.telemedicine.dao.ControllerMySQL;
 import com.telemedicine.models.APIRequest;
 import com.telemedicine.models.APIResponse;
@@ -26,7 +27,8 @@ public class AddPacketsToPatientServlet extends HttpServlet {
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 
-		APIRequest requestAPI = new Gson().fromJson(request.getParameter("APIRequest"), APIRequest.class);
+		Gson gsonConverter = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").create();
+		APIRequest requestAPI = gsonConverter.fromJson(request.getParameter("APIRequest"), APIRequest.class);
 
 		BitalinoPackage bitalinopackage = requestAPI.getBitalinopackage();
 		int patientId = bitalinopackage.getPatientId();
