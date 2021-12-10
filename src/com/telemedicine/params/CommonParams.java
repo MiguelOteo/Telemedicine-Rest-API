@@ -7,7 +7,7 @@ public @interface CommonParams {
 	
 	// MySQL connection parameter
 	public final String BASE_DB_URL = "jdbc:mysql://localhost:3306/telemedicineDB";
-	public final String DB_PASSWORD = "8mo@oLbwLkGxCE8w";
+	public final String DB_PASSWORD = "8mo@oLbwLkGxCE8w"; // Change password if your MySQL server has a diff one
 	public final String DB_HOST = "root";
 	
 	// Insert data in the data base
