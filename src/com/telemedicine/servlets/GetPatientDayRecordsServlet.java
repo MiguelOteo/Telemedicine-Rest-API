@@ -39,7 +39,7 @@ public class GetPatientDayRecordsServlet extends HttpServlet {
 					responseModel.setDayRecords(dayRecords);
 					sendData(responseModel, response);	
 				} else {
-					sendMessage("No data recorded that day", true, response);
+					sendMessage("No data recorded at that time", true, response);
 				}
 			} else {
 				sendMessage("Error searching the data", true, response);
