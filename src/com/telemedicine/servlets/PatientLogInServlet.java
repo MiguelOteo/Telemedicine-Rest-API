@@ -11,15 +11,14 @@ import com.telemedicine.dao.ControllerMySQL;
 import com.telemedicine.encryption.SaltBASE64Encryption;
 import com.telemedicine.models.APIRequest;
 import com.telemedicine.models.APIResponse;
-import com.telemedicine.models.Doctor;
 import com.telemedicine.models.Patient;
 import com.telemedicine.models.User;
 
-public class UserLoginServlet extends HttpServlet {
+public class PatientLogInServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
-       
-    public UserLoginServlet() {super();}
+    
+    public PatientLogInServlet() {super();}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -39,16 +38,14 @@ public class UserLoginServlet extends HttpServlet {
         		if(SaltBASE64Encryption.verifyUserPassword(requestAPI.getUserPassword(), user.getEncryptedPassword(), user.getUserSalt())) {
         			
         			Patient patient = controllerMySQL.searchPatientByUserId(user);
-        			Doctor doctor = controllerMySQL.searchDoctorByUserId(user);
         			
-        			if(patient != null && doctor == null) {
+        			if(patient != null) {
         				
             			responseModel.setPatient(patient);
             			sendAPImodel(responseModel, response);
         			} else {
-        				
-            			responseModel.setDoctor(doctor);
-            			sendAPImodel(responseModel, response);
+    
+        				sendMessage("Patient account not found", true, response);
         			}
         		} else {
         			sendMessage("Incorrect password", true, response);
@@ -59,11 +56,6 @@ public class UserLoginServlet extends HttpServlet {
         } else {
         	sendMessage("Parameters missing", true, response);
         }
-	}
-	
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		super.doPost(req, resp);
 	}
 	
 	public void sendAPImodel(APIResponse responseModel, HttpServletResponse response) throws ServletException, IOException {
