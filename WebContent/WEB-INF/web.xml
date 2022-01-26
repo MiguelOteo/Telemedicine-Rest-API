@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://Java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
-  
   <servlet>
     <servlet-name>UserLoginServlet</servlet-name>
     <servlet-class>com.telemedicine.servlets.UserLoginServlet</servlet-class>
@@ -9,7 +8,6 @@
     <servlet-name>UserLoginServlet</servlet-name>
     <url-pattern>/userLogin</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>UserRegistrationServlet</servlet-name>
     <servlet-class>com.telemedicine.servlets.UserRegistrationServlet</servlet-class>
@@ -18,7 +16,6 @@
     <servlet-name>UserRegistrationServlet</servlet-name>
     <url-pattern>/userRegistration</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>UpdateUserAccountServlet</servlet-name>
     <servlet-class>com.telemedicine.servlets.UpdateUserAccountServlet</servlet-class>
@@ -27,7 +24,6 @@
     <servlet-name>UpdateUserAccountServlet</servlet-name>
     <url-pattern>/updateAccount</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>ListPatientsServlet</servlet-name>
     <servlet-class>com.telemedicine.servlets.ListPatientsServlet</servlet-class>
@@ -36,7 +32,6 @@
     <servlet-name>ListPatientsServlet</servlet-name>
     <url-pattern>/listPatients</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>ListDoctorPatientsServlet</servlet-name>
     <servlet-class>com.telemedicine.servlets.ListDoctorPatientsServlet</servlet-class>
@@ -45,7 +40,6 @@
     <servlet-name>ListDoctorPatientsServlet</servlet-name>
     <url-pattern>/listDoctorPatients</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>GetPatientInformationServlet</servlet-name>
     <servlet-class>com.telemedicine.servlets.GetPatientInformationServlet</servlet-class>
@@ -54,7 +48,6 @@
     <servlet-name>GetPatientInformationServlet</servlet-name>
     <url-pattern>/getPatientInformation</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>DeletePatientAssignmentServlet</servlet-name>
     <servlet-class>com.telemedicine.servlets.DeletePatientAssignmentServlet</servlet-class>
@@ -63,7 +56,6 @@
     <servlet-name>DeletePatientAssignmentServlet</servlet-name>
     <url-pattern>/deletePatientAssignment</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>ChangePasswordServlet</servlet-name>
     <servlet-class>com.telemedicine.servlets.ChangePasswordServlet</servlet-class>
@@ -72,7 +64,6 @@
     <servlet-name>ChangePasswordServlet</servlet-name>
     <url-pattern>/changePassword</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>AddPatientsToDoctorServlet</servlet-name>
     <servlet-class>com.telemedicine.servlets.AddPatientsToDoctorServlet</servlet-class>
@@ -81,7 +72,6 @@
     <servlet-name>AddPatientsToDoctorServlet</servlet-name>
     <url-pattern>/addPatientsToDoctor</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>AddPatientIdServlet</servlet-name>
     <servlet-class>com.telemedicine.servlets.AddPatientIdServlet</servlet-class>
@@ -90,7 +80,6 @@
     <servlet-name>AddPatientIdServlet</servlet-name>
     <url-pattern>/addPatientIdNumber</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>AddDoctorIdentificationServlet</servlet-name>
     <servlet-class>com.telemedicine.servlets.AddDoctorIdentificationServlet</servlet-class>
@@ -99,7 +88,6 @@
     <servlet-name>AddDoctorIdentificationServlet</servlet-name>
     <url-pattern>/addDoctorIdentification</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>GetPatientDayRecordsServlet</servlet-name>
     <servlet-class>com.telemedicine.servlets.GetPatientDayRecordsServlet</servlet-class>
@@ -108,7 +96,6 @@
     <servlet-name>GetPatientDayRecordsServlet</servlet-name>
     <url-pattern>/getPatientDayRecords</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>AddPacketsToPatientServlet</servlet-name>
     <servlet-class>com.telemedicine.servlets.AddPacketsToPatientServlet</servlet-class>
@@ -117,7 +104,6 @@
     <servlet-name>AddPacketsToPatientServlet</servlet-name>
     <url-pattern>/addPacketsToPatient</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>UpdatePatientDataServlet</servlet-name>
     <servlet-class>com.telemedicine.servlets.UpdatePatientDataServlet</servlet-class>
@@ -126,5 +112,14 @@
     <servlet-name>UpdatePatientDataServlet</servlet-name>
     <url-pattern>/updatePatientData</url-pattern>
   </servlet-mapping>
-  
+  <servlet>
+    <description></description>
+    <display-name>DoctorRegistrationServlet</display-name>
+    <servlet-name>DoctorRegistrationServlet</servlet-name>
+    <servlet-class>com.telemedicine.servlets.DoctorRegistrationServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DoctorRegistrationServlet</servlet-name>
+    <url-pattern>/doctorRegistration</url-pattern>
+  </servlet-mapping>
 </web-app>

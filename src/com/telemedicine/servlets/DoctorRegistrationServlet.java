@@ -13,13 +13,13 @@ import com.telemedicine.models.APIRequest;
 import com.telemedicine.models.APIResponse;
 import com.telemedicine.models.User;
 
-public class UserRegistrationServlet extends HttpServlet {
+public class DoctorRegistrationServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
-       
-    public UserRegistrationServlet() {super();}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public DoctorRegistrationServlet() {super();}
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		ControllerMySQL controllerMySQL = new ControllerMySQL(); 
 		response.setContentType("application/json");
@@ -41,17 +41,7 @@ public class UserRegistrationServlet extends HttpServlet {
 					User user = controllerMySQL.registerUser(requestAPI.getUserName(), requestAPI.getUserEmail(), userEncryptedPassword, userSalt);
 					
 					if(user != null) {
-						if(requestAPI.getUserType().equals("Patient")) {
-							
-							Boolean patientCreated = controllerMySQL.registerPatient(user.getUserId());
-							if(patientCreated == true) {
-								
-								sendMessage("Patient account created", false, response);
-							} else {
-								sendMessage("Error inserting new patient", true, response);
-							}
-						} else {
-							
+						
 							Boolean doctorCreated = controllerMySQL.registerDoctor(user.getUserId());
 							if(doctorCreated == true) {
 								
@@ -59,7 +49,6 @@ public class UserRegistrationServlet extends HttpServlet {
 							} else {
 								sendMessage("Error inserting new doctor", true, response);
 							}
-						}
 					} else {
 						sendMessage("Error inserting new user", true, response);
 					}
@@ -82,8 +71,5 @@ public class UserRegistrationServlet extends HttpServlet {
 		response.getWriter().print(new Gson().toJson(responseModel));
 		response.getWriter().flush();
 	}
+
 }
-
-
-
-
