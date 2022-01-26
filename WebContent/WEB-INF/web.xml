@@ -142,4 +142,14 @@
     <servlet-name>PatientLogInServlet</servlet-name>
     <url-pattern>/patientLogIn</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>PatientRegistrationServlet</display-name>
+    <servlet-name>PatientRegistrationServlet</servlet-name>
+    <servlet-class>com.telemedicine.servlets.PatientRegistrationServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PatientRegistrationServlet</servlet-name>
+    <url-pattern>/patientRegistration</url-pattern>
+  </servlet-mapping>
 </web-app>
