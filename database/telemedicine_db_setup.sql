@@ -1,4 +1,7 @@
-CREATE TABLE users (
+
+CREATE DATABASE telemedicinedb;
+
+CREATE TABLE telemedicinedb.users (
 	
 	userId INT PRIMARY KEY AUTO_INCREMENT,
 	userName VARCHAR(30) NOT NULL, 
@@ -7,7 +10,7 @@ CREATE TABLE users (
 	userSalt VARCHAR(15) NOT NULL
 );
 
-CREATE TABLE doctors (
+CREATE TABLE telemedicinedb.doctors (
 
 	doctorId INT PRIMARY KEY AUTO_INCREMENT,
 	doctorIdentification VARCHAR(15) DEFAULT NULL,
@@ -15,7 +18,7 @@ CREATE TABLE doctors (
 	FOREIGN KEY (userId) REFERENCES users(userId) ON DELETE CASCADE
 );
 
-CREATE TABLE patients (
+CREATE TABLE telemedicinedb.patients (
 
 	patientId INT PRIMARY KEY AUTO_INCREMENT,
 	patientIdNumber VARCHAR(15) DEFAULT NULL,
@@ -27,7 +30,7 @@ CREATE TABLE patients (
 	FOREIGN KEY (doctorId) REFERENCES doctors(doctorId) 
 );
 
-CREATE TABLE bitalinoRecords (
+CREATE TABLE telemedicinedb.bitalinoRecords (
 
 	recordsId INT PRIMARY KEY AUTO_INCREMENT,
 	recordsStartDate DATETIME(3) NOT NULL,
