@@ -30,15 +30,15 @@ public class AddPacketsToPatientServlet extends HttpServlet {
 		Gson gsonConverter = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").create();
 		APIRequest requestAPI = gsonConverter.fromJson(request.getParameter("APIRequest"), APIRequest.class);
 
-		BitalinoPackage bitalinopackage = requestAPI.getBitalinopackage();
+		BitalinoPackage bitalinopackage = requestAPI.getBitalinoPackage();
 		int patientId = bitalinopackage.getPatientId();
 		
 		if (controllerMySQL.searchPatientByPatientId(patientId) != null) {
 
 				Timestamp packageDate = bitalinopackage.getRecordsDate();
 				int packageFrequency = bitalinopackage.getRecordFreq();
-				String packageEMG = bitalinopackage.getemgData();
-				String packageECG = bitalinopackage.getecgData();
+				String packageEMG = bitalinopackage.getEmgData();
+				String packageECG = bitalinopackage.getEcgData();
 				
 				boolean insertion = controllerMySQL.addPacketsToPatient(packageDate, packageFrequency, packageEMG, packageECG, patientId);
 
